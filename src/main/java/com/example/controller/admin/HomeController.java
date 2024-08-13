@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/home")
+    @GetMapping("/admin/home")
     public String home(Model model) {
         model.addAttribute("message", "Hello, Thymeleaf!");
         return "admin/home";
