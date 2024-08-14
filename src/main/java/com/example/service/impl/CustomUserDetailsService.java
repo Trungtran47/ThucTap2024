@@ -29,13 +29,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         int role = userEntity.getRole();
         if (role == 0) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
         } else if (role == 1) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
+        }else {
+            throw new UsernameNotFoundException("Role not found for user!");
         }
         UserDTO user = new UserDTO(userEntity.getUsername(), userEntity.getPassword(),
                 true, true, true,true, authorities);
         user.setFullName(userEntity.getFullName());
+        System.out.println(user.getAuthorities());
         return user;
     }
 }

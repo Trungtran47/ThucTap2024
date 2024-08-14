@@ -17,4 +17,10 @@ public class UserController {
         model.addAttribute("message", "Hello, Thymeleaf!");
         return "login";
     }
+
+    @GetMapping("/access-denied")
+    public String accessDenied(Model model) {
+        model.addAttribute("message", "Hello, Thymeleaf!");
+        return "login";
+    }
 }
