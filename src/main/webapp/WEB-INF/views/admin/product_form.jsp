@@ -3,6 +3,6 @@
 
 <%@ page isELIgnored="false" %>
 <c:set var="title" value="Thêm sản phẩm" />
-<c:set var="body" value="content/product_form_content.jsp" />
+<c:set var="body" value="content/product/product_form_content.jsp" />
 <%@ include file="/layouts/admin.jsp" %>
 <!-- Nội dung của trang con sẽ được include vào layout -->

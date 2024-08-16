@@ -1,2 +1,4 @@
-package com.example.service;public interface IShiftService {
+package com.example.service;
+
+public interface IShiftService {
 }

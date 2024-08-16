@@ -14,7 +14,7 @@
     <div class="card flex-fill">
         <div class="card-header d-flex justify-content-between" >
 
-            <h5 class="card-title mb-0">Danh sách sản phẩm</h5>
+            <h5 class="card-title mb-0">Danh sách Nhân viên</h5>
             <a class="btn btn-primary" href="<c:url value='/manage/admin/employee/new'/>">Thêm Nhân Viên mới</a>
         </div>
         <table class="table table-centered table-hover my-0">
@@ -29,6 +29,7 @@
                 <th class="d-none d-md-table-cell">Số điện thoại</th>
                 <th class="d-none d-md-table-cell">Chức vụ</th>
                 <th class="d-none d-md-table-cell">Trạng thái</th>
+                <th class="d-none d-md-table-cell">Quản lý</th>
                 <th></th>
             </tr>
             </thead>
@@ -56,7 +57,7 @@
                     <td>${user.email}</td>
 
                     <td>${user.phone}</td>
-                    <td>${user.IDManager}</td>
+
                     <td>
                         <c:if test="${user.role == 1}">
                             Nhân viên
@@ -66,6 +67,14 @@
                         </c:if>
                     </td>
                     <td>${user.status}</td>
+                    <c:if test="${user.IDManager == null}">
+                        <td>Không có</td>
+                    </c:if>
+                    <c:if test="${user.IDManager != null}">
+                        <td>${user.IDManager}</td>
+                    </c:if>
+
+
 
                     <td class="table-action"> <a
                             href="<c:url value='/manage/product/edit/${users.userId}' />"

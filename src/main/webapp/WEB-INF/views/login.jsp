@@ -64,9 +64,14 @@
                                         </div>
                                     </form>
                                 </div>
-                                <c:if test="${param.error == true}">
-                                    <div class = "alert alert-damger">
-                                        Tên đăng nhập hoặc mật khẩu chưa đúng!
+                                <c:if test="${param.error != null}">
+                                    <div class="alert alert-danger" style="color: red">
+                                        *Username or password incorrect
+                                    </div>
+                                </c:if>
+                                <c:if test="${param.accessDenied != null}">
+                                    <div class="alert alert-danger">
+                                        you Not authorize
                                     </div>
                                 </c:if>
                             </div>

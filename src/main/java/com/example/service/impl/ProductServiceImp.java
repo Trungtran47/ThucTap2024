@@ -1,21 +1,16 @@
 package com.example.service.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
+import com.example.entity.ProductEntity;
+import com.example.repository.ProductRepository;
+import com.example.service.IProductService;
+import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.entity.CategoryEntity;
-
-import com.example.entity.ProductEntity;
-import com.example.repository.CategoryRepository;
-import com.example.repository.ProductRepository;
-import com.example.service.IProductService;
-
-import jakarta.servlet.ServletContext;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 @Service
 public class ProductServiceImp implements IProductService {
@@ -28,7 +23,7 @@ public class ProductServiceImp implements IProductService {
         return productRepository.findAll();
     }
 
-    public ProductEntity getProductById(int id) {
+    public ProductEntity getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
@@ -36,7 +31,7 @@ public class ProductServiceImp implements IProductService {
         // Kiểm tra nếu file không rỗng
         if (!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
-            String uploadDir = "C:/JavaWorkspace/mock-project/src/main/webapp/template/assets/productImg";
+            String uploadDir = "/resources/product";
             
             // Tạo thư mục nếu chưa tồn tại
             File dir = new File(uploadDir);
@@ -49,7 +44,7 @@ public class ProductServiceImp implements IProductService {
             file.transferTo(new File(filePath));
             
             // Lưu tên file hoặc đường dẫn vào cơ sở dữ liệu
-            product.setImage("/template/assets/productImg/" + fileName);
+            product.setImage("/resources/product/" + fileName);
         } else {
             // Nếu không có file mới, giữ lại hình ảnh cũ nếu có
             ProductEntity existingProduct = productRepository.findById(product.getProductId()).orElse(null);
@@ -57,12 +52,11 @@ public class ProductServiceImp implements IProductService {
                 product.setImage(existingProduct.getImage());
             }
         }
-
         // Lưu hoặc cập nhật sản phẩm
         productRepository.save(product);
     }
 
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 }

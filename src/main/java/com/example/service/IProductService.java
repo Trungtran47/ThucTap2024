@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface IProductService {
 	List<ProductEntity> getAllProducts();
-    ProductEntity getProductById(int id);
+    ProductEntity getProductById(Long id);
     void saveProduct(ProductEntity product, MultipartFile file) throws IOException;
-    void deleteProduct(int id);  
+    void deleteProduct(Long id);
 }

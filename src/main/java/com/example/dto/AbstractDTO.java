@@ -13,6 +13,10 @@ public class AbstractDTO <T>{
     private long[] ids;
     private List<T> listResult = new ArrayList<>();
     private Integer page;
+    private Integer limit;
+
+
+
     private Integer maxPageItem;
     private Integer totalPage;
     private Integer totalItem;
@@ -148,5 +152,12 @@ public class AbstractDTO <T>{
 
     public void setType(String type) {
         this.type = type;
+    }
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }

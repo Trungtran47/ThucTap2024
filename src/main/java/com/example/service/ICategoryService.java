@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ICategoryService {
 	List<CategoryEntity> getAllCategories();
-    CategoryEntity getCategoryById(int id);
+    CategoryEntity getCategoryById(Long id);
     void saveCategory(CategoryEntity category, MultipartFile file) throws IOException;
-    void deleteCategory(int id);  
+    void deleteCategory(Long id);
 }

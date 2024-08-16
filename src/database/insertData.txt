@@ -1,0 +1,13 @@
+INSERT INTO products (categoryId, create_date, created_by, description, image, price, product_name, updated_by, updated_date)
+VALUES (1, '20INSERT INTO products (categoryId, create_date, created_by, description, image, price, product_name, updated_by, updated_date)
+VALUES (1, ''2024-08-15'', ''admin'', ''Sản phẩm số 1'', ''data/product/banhngon2-1471922491.jpg'', 100.00, ''Product 1'', ''admin'', ''2024-08-15'');
+INSERT INTO products (categoryId, create_date, created_by, description, image, price, product_name, updated_by, updated_date)
+VALUES (1, ''2024-08-15'', ''admin'', ''Sản phẩm số 1'', ''data/product/banhngon2-1471922491.jpg'', 100.00, ''Product 1'', ''admin'', ''2024-08-15'');
+INSERT INTO products (categoryId, create_date, created_by, description, image, price, product_name, updated_by, updated_date)
+VALUES (1, ''2024-08-15'', ''admin'', ''Sản phẩm số 1'', ''data/product/banhngon2-1471922491.jpg'', 100.00, ''Product 1'', ''admin'', ''2024-08-15'');
+INSERT INTO products (categoryId, create_date, created_by, description, image, price, product_name, updated_by, updated_date)
+VALUES (1, ''2024-08-15'', ''admin'', ''Sản phẩm số 1'', ''data/product/banhngon2-1471922491.jpg'', 100.00, ''Product 1'', ''admin'', ''2024-08-15'');
+
+-- ... thêm các câu lệnh INSERT khác ...
+INSERT INTO users (create_date, role, status, updated_date, manager_id, phone, password, username, email, created_by, full_name, updated_by)
+VALUES ('2024-08-13', 1, 1, NULL, NULL, '123-456-7890', '$2a$10$jJkidCq1T7Vm1uz.iaLj/uzT5a8TqMdlzv61wl9WwvAtfg4ihQTTW', 'vi', 'john.doe@example.com', 'admin', 'John Doe', NULL);

@@ -25,7 +25,7 @@ public class CategoryServiceImp implements ICategoryService {
         return categoryRepository.findAll();
     }
 
-    public CategoryEntity getCategoryById(int id) {
+    public CategoryEntity getCategoryById(Long id) {
         return categoryRepository.findById(id).orElse(null);
     }
 
@@ -53,7 +53,7 @@ public class CategoryServiceImp implements ICategoryService {
       
     }
 
-    public void deleteCategory(int id) {
+    public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
 

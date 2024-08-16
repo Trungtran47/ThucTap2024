@@ -1,269 +1,526 @@
+<div class="container-fluid">
 
-    <div class="container-fluid p-0">
-
-        <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
-
-        <div class="row">
-            <div class="col-xl-6 col-xxl-5 d-flex">
-                <div class="w-100">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col mt-0">
-                                            <h5 class="card-title">Sales</h5>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="stat text-primary">
-                                                <i class="align-middle" data-feather="truck"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h1 class="mt-1 mb-3">2.382</h1>
-                                    <div class="mb-0">
-                                        <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-                                        <span class="text-muted">Since last week</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col mt-0">
-                                            <h5 class="card-title">Visitors</h5>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="stat text-primary">
-                                                <i class="align-middle" data-feather="users"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h1 class="mt-1 mb-3">14.212</h1>
-                                    <div class="mb-0">
-                                        <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-                                        <span class="text-muted">Since last week</span>
-                                    </div>
-                                </div>
-                            </div>
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-light" id="dash-daterange">
+                            <span class="input-group-text bg-primary border-primary text-white">
+                                                    <i class="mdi mdi-calendar-range font-13"></i>
+                                                </span>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col mt-0">
-                                            <h5 class="card-title">Earnings</h5>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="stat text-primary">
-                                                <i class="align-middle" data-feather="dollar-sign"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h1 class="mt-1 mb-3">$21.300</h1>
-                                    <div class="mb-0">
-                                        <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-                                        <span class="text-muted">Since last week</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col mt-0">
-                                            <h5 class="card-title">Orders</h5>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="stat text-primary">
-                                                <i class="align-middle" data-feather="shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h1 class="mt-1 mb-3">64</h1>
-                                    <div class="mb-0">
-                                        <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-                                        <span class="text-muted">Since last week</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                            <i class="mdi mdi-autorenew"></i>
+                        </a>
+                        <a href="javascript: void(0);" class="btn btn-primary ms-1">
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a>
+                    </form>
                 </div>
-            </div>
+                <h4 class="page-title">Dashboard</h4>
 
-            <div class="col-xl-6 col-xxl-7">
-                <div class="card flex-fill w-100">
-                    <div class="card-header">
-
-                        <h5 class="card-title mb-0">Recent Movement</h5>
-                    </div>
-                    <div class="card-body py-3">
-                        <div class="chart chart-sm">
-                            <canvas id="chartjs-dashboard-line"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
+    <!-- end page title -->
 
-        <div class="row">
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
-                <div class="card flex-fill w-100">
-                    <div class="card-header">
+    <div class="row">
+        <div class="col-xl-5 col-lg-6">
 
-                        <h5 class="card-title mb-0">Browser Usage</h5>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-account-multiple widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Customers</h5>
+                            <h3 class="mt-3 mb-3">36,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Orders</h5>
+                            <h3 class="mt-3 mb-3">5,543</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-currency-usd widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
+                            <h3 class="mt-3 mb-3">$6,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-pulse widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
+                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </p>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+            </div> <!-- end row -->
+
+        </div> <!-- end col -->
+
+        <div class="col-xl-7 col-lg-6">
+            <div class="card card-h-100">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
                     </div>
-                    <div class="card-body d-flex">
-                        <div class="align-self-center w-100">
-                            <div class="py-3">
-                                <div class="chart chart-xs">
-                                    <canvas id="chartjs-dashboard-pie"></canvas>
+                    <h4 class="header-title mb-3">Projections Vs Actuals</h4>
+
+                    <div dir="ltr">
+                        <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef"></div>
+                    </div>
+
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title mb-3">Revenue</h4>
+
+                    <div class="chart-content-bg">
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <p class="text-muted mb-0 mt-3">Current Week</p>
+                                <h2 class="fw-normal mb-3">
+                                    <small class="mdi mdi-checkbox-blank-circle text-primary align-middle me-1"></small>
+                                    <span>$58,254</span>
+                                </h2>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-muted mb-0 mt-3">Previous Week</p>
+                                <h2 class="fw-normal mb-3">
+                                    <small class="mdi mdi-checkbox-blank-circle text-success align-middle me-1"></small>
+                                    <span>$69,524</span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash-item-overlay d-none d-md-block" dir="ltr">
+                        <h5>Today's Earning: $2,562.30</h5>
+                        <p class="text-muted font-13 mb-3 mt-2">Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+                            Etiam rhoncus...</p>
+                        <a href="javascript: void(0);" class="btn btn-outline-primary">View Statements
+                            <i class="mdi mdi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                    <div dir="ltr">
+                        <div id="revenue-chart" class="apex-charts mt-3" data-colors="#727cf5,#0acf97"></div>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title">Revenue By Location</h4>
+                    <div class="mb-4 mt-4">
+                        <div id="world-map-markers" style="height: 224px"></div>
+                    </div>
+
+                    <h5 class="mb-1 mt-0 fw-normal">New York</h5>
+                    <div class="progress-w-percent">
+                        <span class="progress-value fw-bold">72k </span>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-1 mt-0 fw-normal">San Francisco</h5>
+                    <div class="progress-w-percent">
+                        <span class="progress-value fw-bold">39k </span>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-1 mt-0 fw-normal">Sydney</h5>
+                    <div class="progress-w-percent">
+                        <span class="progress-value fw-bold">25k </span>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-1 mt-0 fw-normal">Singapore</h5>
+                    <div class="progress-w-percent mb-0">
+                        <span class="progress-value fw-bold">61k </span>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: 61%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+    </div>
+    <!-- end row -->
+
+
+    <div class="row">
+        <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
+            <div class="card">
+                <div class="card-body">
+                    <a href="" class="btn btn-sm btn-link float-end">Export
+                        <i class="mdi mdi-download ms-1"></i>
+                    </a>
+                    <h4 class="header-title mt-2 mb-3">Top Selling Products</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap table-hover mb-0">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">ASOS Ridley High Waist</h5>
+                                    <span class="text-muted font-13">07 April 2018</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$79.49</h5>
+                                    <span class="text-muted font-13">Price</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">82</h5>
+                                    <span class="text-muted font-13">Quantity</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
+                                    <span class="text-muted font-13">Amount</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">Marco Lightweight Shirt</h5>
+                                    <span class="text-muted font-13">25 March 2018</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$128.50</h5>
+                                    <span class="text-muted font-13">Price</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">37</h5>
+                                    <span class="text-muted font-13">Quantity</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$4,754.50</h5>
+                                    <span class="text-muted font-13">Amount</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">Half Sleeve Shirt</h5>
+                                    <span class="text-muted font-13">17 March 2018</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$39.99</h5>
+                                    <span class="text-muted font-13">Price</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">64</h5>
+                                    <span class="text-muted font-13">Quantity</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$2,559.36</h5>
+                                    <span class="text-muted font-13">Amount</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">Lightweight Jacket</h5>
+                                    <span class="text-muted font-13">12 March 2018</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$20.00</h5>
+                                    <span class="text-muted font-13">Price</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">184</h5>
+                                    <span class="text-muted font-13">Quantity</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$3,680.00</h5>
+                                    <span class="text-muted font-13">Amount</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">Marco Shoes</h5>
+                                    <span class="text-muted font-13">05 March 2018</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$28.49</h5>
+                                    <span class="text-muted font-13">Price</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">69</h5>
+                                    <span class="text-muted font-13">Quantity</span>
+                                </td>
+                                <td>
+                                    <h5 class="font-14 my-1 fw-normal">$1,965.81</h5>
+                                    <span class="text-muted font-13">Amount</span>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div> <!-- end table-responsive-->
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+
+        <div class="col-xl-3 col-lg-6 order-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title">Total Sales</h4>
+
+                    <div id="average-sales" class="apex-charts mb-4 mt-4" data-colors="#727cf5,#0acf97,#fa5c7c,#ffbc00"></div>
+
+
+                    <div class="chart-widget-list">
+                        <p>
+                            <i class="mdi mdi-square text-primary"></i> Direct
+                            <span class="float-end">$300.56</span>
+                        </p>
+                        <p>
+                            <i class="mdi mdi-square text-danger"></i> Affilliate
+                            <span class="float-end">$135.18</span>
+                        </p>
+                        <p>
+                            <i class="mdi mdi-square text-success"></i> Sponsored
+                            <span class="float-end">$48.96</span>
+                        </p>
+                        <p class="mb-0">
+                            <i class="mdi mdi-square text-warning"></i> E-mail
+                            <span class="float-end">$154.02</span>
+                        </p>
+                    </div>
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+
+        <div class="col-xl-3 col-lg-6 order-lg-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title mb-2">Recent Activity</h4>
+
+                    <div data-simplebar="" style="max-height: 419px;">
+                        <div class="timeline-alt pb-0">
+                            <div class="timeline-item">
+                                <i class="mdi mdi-upload bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-info fw-bold mb-1 d-block">You sold an item</a>
+                                    <small>Paul Burgess just purchased “Hyper - Admin Dashboard”!</small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">5 minutes ago</small>
+                                    </p>
                                 </div>
                             </div>
 
-                            <table class="table mb-0">
-                                <tbody>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td class="text-end">4306</td>
-                                </tr>
-                                <tr>
-                                    <td>Firefox</td>
-                                    <td class="text-end">3801</td>
-                                </tr>
-                                <tr>
-                                    <td>IE</td>
-                                    <td class="text-end">1689</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
-                <div class="card flex-fill w-100">
-                    <div class="card-header">
+                            <div class="timeline-item">
+                                <i class="mdi mdi-airplane bg-primary-lighten text-primary timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-primary fw-bold mb-1 d-block">Product on the Bootstrap Market</a>
+                                    <small>Dave Gamache added
+                                        <span class="fw-bold">Admin Dashboard</span>
+                                    </small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">30 minutes ago</small>
+                                    </p>
+                                </div>
+                            </div>
 
-                        <h5 class="card-title mb-0">Real-Time</h5>
-                    </div>
-                    <div class="card-body px-4">
-                        <div id="world_map" style="height:350px;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-                <div class="card flex-fill">
-                    <div class="card-header">
+                            <div class="timeline-item">
+                                <i class="mdi mdi-microphone bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-info fw-bold mb-1 d-block">Robert Delaney</a>
+                                    <small>Send you message
+                                        <span class="fw-bold">"Are you there?"</span>
+                                    </small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">2 hours ago</small>
+                                    </p>
+                                </div>
+                            </div>
 
-                        <h5 class="card-title mb-0">Calendar</h5>
-                    </div>
-                    <div class="card-body d-flex">
-                        <div class="align-self-center w-100">
-                            <div class="chart">
-                                <div id="datetimepicker-dashboard"></div>
+                            <div class="timeline-item">
+                                <i class="mdi mdi-upload bg-primary-lighten text-primary timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-primary fw-bold mb-1 d-block">Audrey Tobey</a>
+                                    <small>Uploaded a photo
+                                        <span class="fw-bold">"Error.jpg"</span>
+                                    </small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">14 hours ago</small>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-upload bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-info fw-bold mb-1 d-block">You sold an item</a>
+                                    <small>Paul Burgess just purchased “Hyper - Admin Dashboard”!</small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">16 hours ago</small>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-airplane bg-primary-lighten text-primary timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-primary fw-bold mb-1 d-block">Product on the Bootstrap Market</a>
+                                    <small>Dave Gamache added
+                                        <span class="fw-bold">Admin Dashboard</span>
+                                    </small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">22 hours ago</small>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-microphone bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <a href="#" class="text-info fw-bold mb-1 d-block">Robert Delaney</a>
+                                    <small>Send you message
+                                        <span class="fw-bold">"Are you there?"</span>
+                                    </small>
+                                    <p class="mb-0 pb-2">
+                                        <small class="text-muted">2 days ago</small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <!-- end timeline -->
+                    </div> <!-- end slimscroll -->
                 </div>
+                <!-- end card-body -->
             </div>
+            <!-- end card-->
         </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-
-                        <h5 class="card-title mb-0">Latest Projects</h5>
-                    </div>
-                    <table class="table table-hover my-0">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th class="d-none d-xl-table-cell">Start Date</th>
-                            <th class="d-none d-xl-table-cell">End Date</th>
-                            <th>Status</th>
-                            <th class="d-none d-md-table-cell">Assignee</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Project Apollo</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                            <td>Project Fireball</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-danger">Cancelled</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                            <td>Project Hades</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                            <td>Project Nitro</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-warning">In progress</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                            <td>Project Phoenix</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                            <td>Project X</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                            <td>Project Romeo</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Christina Mason</td>
-                        </tr>
-                        <tr>
-                            <td>Project Wombat</td>
-                            <td class="d-none d-xl-table-cell">01/01/2023</td>
-                            <td class="d-none d-xl-table-cell">31/06/2023</td>
-                            <td><span class="badge bg-warning">In progress</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4 col-xxl-3 d-flex">
-                <div class="card flex-fill w-100">
-                    <div class="card-header">
-
-                        <h5 class="card-title mb-0">Monthly Sales</h5>
-                    </div>
-                    <div class="card-body d-flex w-100">
-                        <div class="align-self-center chart chart-lg">
-                            <canvas id="chartjs-dashboard-bar"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- end col -->
 
     </div>
+    <!-- end row -->
+
+</div>

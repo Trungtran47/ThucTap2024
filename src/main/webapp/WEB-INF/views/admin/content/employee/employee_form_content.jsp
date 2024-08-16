@@ -12,36 +12,36 @@
         <div class="card">
             <div class="card-header">
 
-                <h5 class="card-title mb-0">Chỉnh sửa</h5>
+                <h5 class="card-title mb-0">Thêm Nhân Viên</h5>
             </div>
             <div class="card-body h-100">
                 <form>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative" >
                         <label class="form-label">Tên Đăng Nhập</label>
-                        <input class="form-control form-control-lg" type="text" name="username" placeholder="Tên Đăng Nhập"  />
+                        <input type="text" class="form-control" name="username" placeholder="Tên Đăng Nhập" >
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label class="form-label">Email</label>
-                        <input class="form-control form-control-lg" type="text" name="email" placeholder="Email"  />
+                        <input class="form-control" type="text" name="email" placeholder="Email"  />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label class="form-label">Số điện thoại</label>
-                        <input class="form-control form-control-lg" type="text" name="phone" placeholder="Số điện thoại"  />
+                        <input class="form-control" type="text" name="phone" placeholder="Số điện thoại"  />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label class="form-label">Tên</label>
-                        <input class="form-control form-control-lg" type="text" name="fullName" placeholder="Số điện thoại"  />
+                        <input class="form-control" type="text" name="fullName" placeholder="Số điện thoại"  />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label class="form-label">Mật khẩu </label>
-                        <input class="form-control form-control-lg" type="password" name="newPassword" placeholder="Mật khẩu"  />
+                        <input class="form-control" type="password" name="newPassword" placeholder="Mật khẩu"  />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label class="form-label">Nhập lại mật khẩu</label>
-                        <input class="form-control form-control-lg" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu"/>
+                        <input class="form-control" type="password" name="reNewPassword" placeholder="Nhập lại mật khẩu"/>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label for="role" class="form-label">Chức vụ</label>
                         <select class="form-select" id="role"
                                 name="role" required>
@@ -50,7 +50,7 @@
                             <option value="0">Quản lý</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label for="ManagerId" class="form-label">Quản lý</label>
                         <select class="form-select" id="ManagerId"
                                 name="role" required>

@@ -28,8 +28,10 @@ public class UserEntity extends BaseEntity{
     @Column(name = "manager_id")
     private Long IDManager;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<OrderEntity> orderDetail;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<OrderEntity> orders;
+    private Set<ShiftDetailEntity> shiftDetail;
 
     public Long getUser_id() {
         return userId;
@@ -102,5 +104,29 @@ public class UserEntity extends BaseEntity{
 
     public void setIDManager(Long IDManager) {
         this.IDManager = IDManager;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Set<OrderEntity> getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(Set<OrderEntity> orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    public Set<ShiftDetailEntity> getShiftDetail() {
+        return shiftDetail;
+    }
+
+    public void setShiftDetail(Set<ShiftDetailEntity> shiftDetail) {
+        this.shiftDetail = shiftDetail;
     }
 }

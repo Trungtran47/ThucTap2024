@@ -11,4 +11,6 @@ public class HomeController {
         model.addAttribute("message", "Hello, Thymeleaf!");
         return "admin/home";
     }
+
+
 }

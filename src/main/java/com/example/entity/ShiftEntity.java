@@ -3,9 +3,10 @@ package com.example.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.Set;
 
 @Entity
-@Table(name = "Shifts")
+@Table(name = "shifts")
 public class ShiftEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +20,54 @@ public class ShiftEntity extends BaseEntity {
     private LocalTime endTime;
     @Column(name = "salary")
     private float Salary;
+    @OneToMany(mappedBy = "shift", cascade = CascadeType.ALL)
+    private Set<ShiftDetailEntity> shiftDetail;
+
+    public Long getShiftId() {
+        return shiftId;
+    }
+
+    public void setShiftId(Long shiftId) {
+        this.shiftId = shiftId;
+    }
+
+    public String getShiftName() {
+        return shiftName;
+    }
+
+    public void setShiftName(String shiftName) {
+        this.shiftName = shiftName;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public float getSalary() {
+        return Salary;
+    }
+
+    public void setSalary(float salary) {
+        Salary = salary;
+    }
+
+    public Set<ShiftDetailEntity> getShiftDetail() {
+        return shiftDetail;
+    }
+
+    public void setShiftDetail(Set<ShiftDetailEntity> shiftDetail) {
+        this.shiftDetail = shiftDetail;
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.dto.UserDTO;
+import com.example.dto.MyUser;
 import com.example.entity.UserEntity;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         }else {
             throw new UsernameNotFoundException("Role not found for user!");
         }
-        UserDTO user = new UserDTO(userEntity.getUsername(), userEntity.getPassword(),
+        MyUser user = new MyUser(userEntity.getUsername(), userEntity.getPassword(),
                 true, true, true,true, authorities);
         user.setFullName(userEntity.getFullName());
+        user.setEmail(userEntity.getEmail());
+        user.setPhone(userEntity.getPhone());
         System.out.println(user.getAuthorities());
         return user;
     }

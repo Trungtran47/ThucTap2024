@@ -10,7 +10,7 @@ public class ProductEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private int productId;
+    private Long productId;
     @Column(name = "product_name",length = 255, nullable = false)
     private String productName;
     @Column(name = "price")
@@ -20,16 +20,20 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "image")
     private String image;
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "category_id")
     private CategoryEntity category;
+    //    trường liên kết với bảng order_out_detail
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<OrderOutDetailEntity> orderOutDetails;
+    //    trường liên kết với bảng material
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<OrderDetailEntity> orderDetails;
+    private Set<ProductMaterialEntity> materials;
 
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -73,11 +77,19 @@ public class ProductEntity extends BaseEntity{
         this.category = category;
     }
 
-    public Set<OrderDetailEntity> getOrderDetails() {
-        return orderDetails;
+    public Set<OrderOutDetailEntity> getOrderOutDetails() {
+        return orderOutDetails;
     }
 
-    public void setOrderDetails(Set<OrderDetailEntity> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setOrderOutDetails(Set<OrderOutDetailEntity> orderOutDetails) {
+        this.orderOutDetails = orderOutDetails;
+    }
+
+    public Set<ProductMaterialEntity> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(Set<ProductMaterialEntity> materials) {
+        this.materials = materials;
     }
 }

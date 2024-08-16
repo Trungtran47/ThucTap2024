@@ -1,16 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 8/15/2024
-  Time: 1:59 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page isELIgnored="false" %>
+<c:set var="title" value="Home Page" />
+<c:set var="body" value="content/shift/shift_form_content.jsp" />
+<%@ include file="/layouts/admin.jsp" %>

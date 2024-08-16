@@ -3,36 +3,40 @@ package com.example.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Orders_detail")
-public class OrderDetailEntity extends BaseEntity{
+@Table(name = "Orders_out_detail")
+public class OrderOutDetailEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "orderId")
-    private OrderEntity order;
+    @JoinColumn(name = "order_id", nullable = false)
+    private OrderEntity orderOut;
 
     @ManyToOne
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
     @Column(name = "quantity")
     private int quantity;
 
-    public int getId() {
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public OrderEntity getOrder() {
-        return order;
+    public OrderEntity getOrderOut() {
+        return orderOut;
     }
 
-    public void setOrder(OrderEntity order) {
-        this.order = order;
+    public void setOrderOut(OrderEntity orderOut) {
+        this.orderOut = orderOut;
     }
 
     public ProductEntity getProduct() {
@@ -49,5 +53,13 @@ public class OrderDetailEntity extends BaseEntity{
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 }

@@ -1,3 +1,5 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container-fluid p-0">
     <div class="mb-3">
         <h1 class="h3 d-inline align-middle">Forms</h1>
@@ -14,7 +16,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Start time</h5>
+                    <h5 class="card-title mb-0">Thời gian bắt đầu</h5>
                 </div>
                 <div class="card-body">
                     <input type="time" name="startTime" class="form-control">
@@ -22,7 +24,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">End time</h5>
+                    <h5 class="card-title mb-0">Thời gian kết thúc</h5>
                 </div>
                 <div class="card-body">
                     <input type="time" name="endTime" class="form-control">
@@ -30,7 +32,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Salary</h5>
+                    <h5 class="card-title mb-0">Lương</h5>
                 </div>
                 <div class="card-body">
                     <input type="text" name="salary" class="form-control">

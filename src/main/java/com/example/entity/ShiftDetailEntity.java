@@ -3,18 +3,43 @@ package com.example.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "shift_detail")
+@Table(name = "shifts_detail")
 public class ShiftDetailEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @ManyToOne
-    @JoinColumn(name = "shiftId")
-    private ShiftEntity order;
+    @JoinColumn(name = "shift_id", nullable = false)
+    private ShiftEntity shift;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public ShiftEntity getShift() {
+        return shift;
+    }
+
+    public void setShift(ShiftEntity shift) {
+        this.shift = shift;
+    }
 }

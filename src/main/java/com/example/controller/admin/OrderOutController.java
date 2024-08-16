@@ -9,25 +9,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping
-public class OrderController {
+@RequestMapping("/manage/order-out")
+public class OrderOutController {
     @Autowired
     private IOrderService iOrderService;
 
     @Autowired
     private IProductService iProductService;
 
-        @GetMapping("/manage/orderproduct")
+    @GetMapping("/new")
     public String order(Model model) {
         model.addAttribute("products", iProductService.getAllProducts());
         return "admin/order_product";
     }
-    @GetMapping("/manage/order-list")
+    @GetMapping("/list")
     public String listOrder(Model model){
         model.addAttribute("orders",iOrderService.getAllOrders());
         return "admin/order_list";
     }
-    @PostMapping("/manage/saveOrder")
+    @PostMapping("/save-order")
     public String save(@ModelAttribute("order") OrderEntity order,
                        @RequestParam("userid") int userid,
                        @RequestParam("customerid") int customerid){
@@ -40,7 +40,7 @@ public class OrderController {
         return "admin/order_list";
     }
 
-    @GetMapping("/manage/order/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editOrder(@PathVariable("id") Long id, Model model){
         OrderEntity orderEntity =  iOrderService.getOrderById(id);
         if (orderEntity != null) {
@@ -49,12 +49,12 @@ public class OrderController {
         }else {
             return "";
         }
-        return "redirect:/manage/orderproduct";
+        return "redirect:/manage/order-out/new";
     }
-    @GetMapping("/manage/order/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id){
         iOrderService.deleteOrder(id);
-        return "redirect:/manage/order_list";
+        return "redirect:/manage/order-out/list";
     }
 
 }

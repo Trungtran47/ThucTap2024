@@ -1,87 +1,128 @@
+<%@ page import="com.example.security.SecurityUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<nav class="navbar navbar-expand navbar-light navbar-bg">
-    <a class="sidebar-toggle js-sidebar-toggle">
-        <i class="hamburger align-self-center"></i>
-    </a>
+<div class="navbar-custom">
+    <ul class="list-unstyled topbar-menu float-end mb-0">
+        <li class="dropdown notification-list d-lg-none">
+            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="dripicons-search noti-icon"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                <form class="p-3">
+                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                </form>
+            </div>
+        </li>
 
-    <div class="navbar-collapse collapse">
-        <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                    <div class="position-relative">
-                        <i class="align-middle" data-feather="bell"></i>
-                        <span class="indicator">1</span>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-                    <div class="dropdown-menu-header">
-                        1 New Notifications
-                    </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-2">
-                                    <i class="text-success" data-feather="user-plus"></i>
-                                </div>
-                                <div class="col-10">
-                                    <div class="text-dark">New connection</div>
-                                    <div class="text-muted small mt-1">Christina accepted your request.</div>
-                                    <div class="text-muted small mt-1">14h ago</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="dropdown-menu-footer">
-                        <a href="#" class="text-muted">Xem thêm</a>
-                    </div>
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="dripicons-bell noti-icon"></i>
+                <span class="noti-icon-badge"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
+
+                <!-- item-->
+                <div class="dropdown-item noti-title">
+                    <h5 class="m-0">
+                                            <span class="float-end">
+                                                <a href="javascript: void(0);" class="text-dark">
+                                                    <small>Clear All</small>
+                                                </a>
+                                            </span>Notification
+                    </h5>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
-                    <div class="position-relative">
-                        <i class="align-middle" data-feather="message-square"></i>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
-                    <div class="dropdown-menu-header">
-                        <div class="position-relative">
-                            4 New Messages
+
+                <div style="max-height: 230px;" data-simplebar="">
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-primary">
+                            <i class="mdi mdi-comment-account-outline"></i>
                         </div>
-                    </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-2">
-                                    <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
-                                </div>
-                                <div class="col-10 ps-2">
-                                    <div class="text-dark">Sharon Lessman</div>
-                                    <div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
-                                    <div class="text-muted small mt-1">5h ago</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="dropdown-menu-footer">
-                        <a href="#" class="text-muted">Xem Thêm</a>
-                    </div>
+                        <p class="notify-details">Caleb Flakelar commented on Admin
+                            <small class="text-muted">1 min ago</small>
+                        </p>
+                    </a>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                    <i class="align-middle" data-feather="settings"></i>
+
+                <!-- All-->
+                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                    Xem thêm
                 </a>
 
-                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="/template/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">User</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Trang cá nhân</a>
-                    <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Cài đặt</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Đăng xuất</a>
+            </div>
+        </li>
+
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar">
+                                        <img src="<c:url value="/template/assets/images/users/user.png"/> " alt="user-image" class="rounded-circle">
+                                    </span>
+                <span>
+                                        <span class="account-user-name"><%=SecurityUtils.getPrincipal().getFullName()%></span>
+                                        <span class="account-position"><%=SecurityUtils.getPrincipal().getAuthorities()%></span>
+                                    </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                <!-- item-->
+                <div class=" dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-            </li>
-        </ul>
+                <c:url var="profileUrl" value='/manage/profile'/>
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item" id="profile-btn">
+                    <i class="mdi mdi-account-circle me-1"></i>
+                    <span>Tài khoản</span>
+                </a>
+                <c:url var="logoutUrl" value="/logout"/>
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item" id="logout-btn">
+                    <i class="mdi mdi-logout me-1"></i>
+                    <span>Đăng xuất</span>
+
+                </a>
+            </div>
+        </li>
+
+    </ul>
+    <button class="button-menu-mobile open-left">
+        <i class="mdi mdi-menu"></i>
+    </button>
+    <div class="app-search dropdown d-none d-lg-block">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                <span class="mdi mdi-magnify search-icon"></span>
+                <button class="input-group-text btn-primary" type="submit">Tìm kiếm</button>
+            </div>
+        </form>
+
+        <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
+            <!-- item-->
+            <div class="dropdown-header noti-title">
+                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
+            </div>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <i class="uil-notes font-16 me-1"></i>
+                <span>Analytics Report</span>
+            </a>
+
+
+
+        </div>
     </div>
-</nav>
+</div>
+<script>
+    // Thêm sự kiện click vào phần tử có id là "logout-btn"
+    document.getElementById('logout-btn').addEventListener('click', function() {
+        // Chuyển hướng đến trang đăng xuất khi click
+        window.location.href = '${logoutUrl}';
+    });
+</script>
+<script>
+    // Thêm sự kiện click vào phần tử có id là "logout-btn"
+    document.getElementById('profile-btn').addEventListener('click', function() {
+        // Chuyển hướng đến trang đăng xuất khi click
+        window.location.href = '${profileUrl}';
+    });
+</script>
