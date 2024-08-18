@@ -1,6 +1,5 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.GrantedAuthority" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <style>
@@ -9,83 +8,201 @@
     }
 </style>
 <script src="https://kit.fontawesome.com/6f5caf640a.js" crossorigin="anonymous"></script>
-<div class="container-fluid p-0">
-
-    <div class="card flex-fill">
-        <div class="card-header d-flex justify-content-between" >
-
-            <h5 class="card-title mb-0">Danh sách Nhân viên</h5>
-            <a class="btn btn-primary" href="<c:url value='/manage/admin/employee/new'/>">Thêm Nhân Viên mới</a>
+<!-- Start Content-->
+<div class="container-fluid">
+    <c:if test="${not empty message}">
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+            <strong></strong>${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <table class="table table-centered table-hover my-0">
-            <thead>
-            <tr>
+    </c:if>
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
 
-                <th class="d-none d-xl-table-cell">Id</th>
-                <th class="d-none d-xl-table-cell">Tên Đăng nhập</th>
+                <h4 class="page-title">Danh sách nhân sự</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
 
-                <th class="d-none d-md-table-cell">Họ và tên</th>
-                <th class="d-none d-md-table-cell">Email</th>
-                <th class="d-none d-md-table-cell">Số điện thoại</th>
-                <th class="d-none d-md-table-cell">Chức vụ</th>
-                <th class="d-none d-md-table-cell">Trạng thái</th>
-                <th class="d-none d-md-table-cell">Quản lý</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${users.listResult}" var="user">
-                <tr>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a href="<c:url value='/manage/manager/employee/new' />" class="btn btn-primary mb-2"><i
+                                    class="mdi mdi-plus-circle me-2"></i> Thêm nhân viên mới</a>
+                        </div>
 
-                    <td>${user.userId}</td>
-                    <td>
-                        <%
-                            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                            String username = authentication.getName();
-                            pageContext.setAttribute("username", username);
-                        %>
-                        <p class="m-0 d-inline-block align-middle font-16">
-                            <a href="apps-ecommerce-products-details.html"
-                               class="text-body">${user.username}</a>
-                            <c:if test="${username == user.username}">
-                                <b>.bạn</b>
-                            </c:if>
-                        </p>
-                    </td>
-                    <td>${user.fullName}</td>
+                    </div>
 
-                    <td>${user.email}</td>
+                    <div class="table-responsive">
+                        <table id="table-list" class="table table-centered display" style="width: 100%">
+                            <thead class="table-light">
 
-                    <td>${user.phone}</td>
+                            <tr>
+                                <th class="d-none d-xl-table-cell">Id</th>
+                                <th class="d-none d-xl-table-cell">Tên Đăng nhập</th>
 
-                    <td>
-                        <c:if test="${user.role == 1}">
-                            Nhân viên
-                        </c:if>
-                        <c:if test="${user.role == 0}">
-                            Quản lý
-                        </c:if>
-                    </td>
-                    <td>${user.status}</td>
-                    <c:if test="${user.IDManager == null}">
-                        <td>Không có</td>
-                    </c:if>
-                    <c:if test="${user.IDManager != null}">
-                        <td>${user.IDManager}</td>
-                    </c:if>
+                                <th class="d-none d-md-table-cell">Họ và tên</th>
+                                <th class="d-none d-md-table-cell">Email</th>
+                                <th class="d-none d-md-table-cell">Số điện thoại</th>
+                                <th class="d-none d-md-table-cell">Chức vụ</th>
+                                <th class="d-none d-md-table-cell">Trạng thái</th>
+                                <th class="d-none d-md-table-cell">Quản lý</th>
+
+                                <th style="width: 85px;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${users}" var="user">
+
+                                <tr>
+
+                                    <td>${user.userId}</td>
+                                    <td>
+                                        <%
+                                            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                                            String username = authentication.getName();
+                                            pageContext.setAttribute("username", username);
+                                        %>
+                                        <p class="m-0 d-inline-block align-middle font-16">
+                                            <a href="apps-ecommerce-products-details.html"
+                                               class="text-body">${user.username}</a>
+                                        </p>
+                                    </td>
+                                    <td>${user.fullName}</td>
+
+                                    <td>${user.email}</td>
+
+                                    <td>${user.phone}</td>
+
+                                    <td>
+                                        <c:if test="${user.role == 2}">
+                                           <div class="text-info mb-2">Nhân viên</div>
+                                        </c:if>
+                                        <c:if test="${user.role == 1}">
+                                            <div class="text-primary">Quản lý</div>
+                                        </c:if>
+                                        <c:if test="${user.role == 0}">
+                                            <div class="text-warning mb-2">Admin</div>
+                                        </c:if>
+                                    </td>
+                                    <td>
+                                        <c:if test="${user.status == 1}">
+                                            <div class="text-success">Đang sử dụng</div>
+                                        </c:if>
+                                        <c:if test="${user.status == 0}">
+                                            <div class="text-danger">Đang khóa</div>
+                                        </c:if>
+                                    </td>
+
+                                    <c:if test="${user.IDManager == null}">
+                                        <td>Không có</td>
+                                    </c:if>
+                                    <c:if test="${user.IDManager != null}">
+                                        <td>${user.IDManager}</td>
+                                    </c:if>
 
 
 
-                    <td class="table-action"> <a
-                            href="<c:url value='/manage/product/edit/${users.userId}' />"
-                            class="action-icon"> <i class="fa-solid fa-pen"></i></a>
-                        <a
-                                href="<c:url value='/manage/product/delete/${users.userId}' />"
-                                class="action-icon"> <i class="fa-solid fa-trash"></i></a></td>
-                </tr>
+                                    <td class="table-action">
 
-            </c:forEach>
-            </tbody>
-        </table>
+                                        <c:if test="${username != user.username}">
+                                            <a class="action-icon" data-bs-toggle="modal" data-bs-target="#editModal"
+                                                    data-user-id="${user.userId}" data-username="${user.username}"
+                                                    data-role="${user.role}"> <i class="fa-solid fa-pen" ></i></a>
+                                            <a href="<c:url value='/manage/manager/employee/lock/${user.userId}' />"
+                                               class="action-icon"> <i class="fa-solid fa-trash"></i></a>
+                                        </c:if>
+                                        <c:if test="${username == user.username}">
+                                            <b>.bạn</b>
+                                        </c:if>
+
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end card-body-->
+            </div>
+            <!-- end card-->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+    <!-- Modal HTML -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Chỉnh sửa người dùng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" action="<c:url value="/manage/manager/employee/edit-role"/>" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Chức vụ</label>
+                            <select class="form-select" id="role" name="role">
+
+                                <c:if test="${user.role == 0}">
+                                    <option value="0">Admin</option>
+                                </c:if>
+
+                                <option value="1">Quản lý</option>
+                                <option value="2">Nhân viên</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="userId" name="userId">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary" id="saveButton">Lưu thay đổi</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
+<!-- container -->
+<script>
+    $(document).ready(function () {
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var userId = button.data('user-id'); // Extract info from data-* attributes
+            var username = button.data('username');
+            var role = button.data('role');
+
+            var modal = $(this);
+            modal.find('#username').val(username);
+            modal.find('#role').val(role);
+            modal.find('#userId').val(userId);
+        });
+    });
+</script>
+
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function() {--%>
+<%--        new DataTable('#example', {--%>
+<%--            "rowCallback": function(row, data, index) {--%>
+<%--                // Gán giá trị STT--%>
+<%--                $('td:eq(0)', row).html(index + 1); // Cột đầu tiên là STT--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+
+
+
+

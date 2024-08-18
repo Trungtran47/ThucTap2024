@@ -2,6 +2,8 @@ package com.example.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "shifts_detail")
 public class ShiftDetailEntity extends BaseEntity {
@@ -16,6 +18,12 @@ public class ShiftDetailEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
+
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "status")
+    private int status;
 
     public Long getId() {
         return Id;
@@ -41,5 +49,21 @@ public class ShiftDetailEntity extends BaseEntity {
 
     public void setShift(ShiftEntity shift) {
         this.shift = shift;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

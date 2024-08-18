@@ -24,7 +24,7 @@
 
     <title>Sign In | AdminKit Demo</title>
 
-    <link href="<c:url value='/template/assets/css/app.css'/>" rel="stylesheet">
+    <link href="<c:url value='/template/assets/css/app.min.css'/>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>

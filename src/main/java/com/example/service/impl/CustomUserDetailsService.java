@@ -29,8 +29,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         int role = userEntity.getRole();
         if (role == 0) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         } else if (role == 1) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        }else if (role == 2) {
             authorities.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
         }else {
             throw new UsernameNotFoundException("Role not found for user!");

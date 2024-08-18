@@ -15,17 +15,26 @@
 
     <!-- Third party CSS -->
     <link href="<c:url value='/template/assets/css/vendor/jquery-jvectormap-1.2.2.css'/>" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/template/assets/css/vendor/dataTables.bootstrap5.css'/>" rel="stylesheet" type="text/css">
+<%--    <link href="<c:url value='/template/assets/css/vendor/dataTables.bootstrap5.css'/>" rel="stylesheet" type="text/css">--%>
     <link href="<c:url value='/template/assets/css/vendor/responsive.bootstrap5.css'/>" rel="stylesheet" type="text/css">
+
+
     <!-- App CSS -->
     <link href="<c:url value='/template/assets/css/icons.min.css'/>" rel="stylesheet" type="text/css">
     <link href="<c:url value='/template/assets/css/app.min.css'/>" rel="stylesheet" type="text/css" id="light-style">
     <link href="<c:url value='/template/assets/css/app-dark.min.css'/>" rel="stylesheet" type="text/css" id="dark-style">
-<%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>--%>
-<%--    <link href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css"/>--%>
-    <!-- DataTables CSS -->
-<%--    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">--%>
-    <link href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css" rel="stylesheet" type="text/css">
+
+
+
+    <link href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.css" rel="stylesheet" type="text/css">
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<%--    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>--%>
+<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>--%>
+<%--    <script src="https://cdn.datatables.net/2.1.3/js/jquery.dataTables.min.js"></script>--%>
+<%--    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.min.js"></script>--%>
 </head>
 
 <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -52,6 +61,7 @@
 <script src="<c:url value='/template/assets/js/app.min.js'/>"></script>
 
 <!-- Third party JS -->
+
 <script src="<c:url value='/template/assets/js/vendor/apexcharts.min.js'/>"></script>
 <script src="<c:url value='/template/assets/js/vendor/jquery-jvectormap-1.2.2.min.js'/>"></script>
 <script src="<c:url value='/template/assets/js/vendor/jquery-jvectormap-world-mill-en.js'/>"></script>
@@ -59,9 +69,44 @@
 <!-- Demo app -->
 <script src="<c:url value='/template/assets/js/pages/demo.dashboard.js'/>"></script>
 
+<%--table--%>
+<%--<script src="<c:url value='/template/assets/js/vendor/jquery.dataTables.min.js'/>"></script>--%>
+<%--<script src="<c:url value='/template/assets/js/vendor/dataTables.bootstrap5.js'/>"></script>--%>
+<script src="<c:url value='/template/assets/js/vendor/dataTables.responsive.min.js'/>"></script>
+<script src="<c:url value='/template/assets/js/vendor/responsive.bootstrap5.min.js'/>"></script>
+<script src="<c:url value='/template/assets/js/vendor/dataTables.checkboxes.min.js'/>"></script>
 
 
-
+<script src="https://cdn.datatables.net/2.1.3/js/jquery.dataTables.min.js"></script>
+<%--<script src="https://code.jquery.com/jquery-3.7.1.js"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>--%>
+<script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-list').DataTable({
+            "language": {
+                "sEmptyTable": "Không có dữ liệu trong bảng",
+                "sInfo": "Đang hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang hiển thị từ 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(lọc từ tổng số _MAX_ mục)",
+                "sLengthMenu": "Hiển thị _MENU_ mục",
+                "sLoadingRecords": "Đang tải...",
+                "sProcessing": "Đang xử lý...",
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không tìm thấy kết quả",
+                "oAria": {
+                    "sSortAscending": ": Sắp xếp cột theo thứ tự tăng dần",
+                    "sSortDescending": ": Sắp xếp cột theo thứ tự giảm dần"
+                }
+            },
+            "rowCallback": function(row, data, index) {
+                // Gán giá trị STT
+                $('td:eq(0)', row).html(index + 1); // Cột đầu tiên là STT
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

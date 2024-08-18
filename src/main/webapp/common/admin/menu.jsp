@@ -1,6 +1,7 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.GrantedAuthority" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div class="leftside-menu">
 
@@ -112,9 +113,10 @@
             </li>
             <%
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                List<String> rolesToCheck = List.of("ROLE_MANAGER", "ROLE_ADMIN");
                 boolean isManager = authentication.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
-                        .anyMatch(role -> role.equals("ROLE_MANAGER"));
+                        .anyMatch(role -> rolesToCheck.contains(role));
 
                 pageContext.setAttribute("isManager", isManager);
             %>
@@ -129,10 +131,10 @@
                 <div class="collapse" id="sidebarEmployee">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="<c:url value="/manage/admin/employee/list"/>">Danh sách nhân viên</a>
+                            <a href="<c:url value="/manage/manager/employee/list"/>">Danh sách nhân viên</a>
                         </li>
                         <li>
-                            <a href="<c:url value="/manage/admin/employee/new"/>">Thêm nhân viên</a>
+                            <a href="<c:url value="/manage/manager/employee/new"/>">Thêm nhân viên</a>
                         </li>
                     </ul>
                 </div>

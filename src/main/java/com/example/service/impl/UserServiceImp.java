@@ -2,11 +2,15 @@ package com.example.service.impl;
 
 import com.example.converter.UserConverter;
 import com.example.dto.UserDTO;
+import com.example.dto.input.UserChangeProfileForm;
 import com.example.entity.UserEntity;
 import com.example.repository.UserRepository;
+import com.example.security.SecurityUtils;
 import com.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,15 +23,13 @@ public class UserServiceImp implements IUserService {
     private UserRepository userRepository;
     @Autowired
     private UserConverter userConverter;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
     @Override
-    public List<UserDTO> findAll(Pageable pageable) {
-        List<UserDTO> models = new ArrayList<>();
-        List<UserEntity> entities = userRepository.findAll(pageable).getContent();
-        for (UserEntity item: entities) {
-            UserDTO userDTO = userConverter.toDTO(item);
-            models.add(userDTO);
-        }
-        return models;
+    public List<UserEntity> findAll() {
+
+        return userRepository.findAll();
     }
 
     @Override
@@ -35,16 +37,7 @@ public class UserServiceImp implements IUserService {
         return (int) userRepository.count();
     }
 
-    @Override
-    public List<UserDTO> findAll() {
-        List<UserDTO> results = new ArrayList<>();
-        List<UserEntity> entities = userRepository.findAll();
-        for (UserEntity item: entities) {
-            UserDTO userDTO = userConverter.toDTO(item);
-            results.add(userDTO);
-        }
-        return results;
-    }
+
 
     @Override
     public UserDTO save(UserDTO userDTO) {
@@ -68,7 +61,88 @@ public class UserServiceImp implements IUserService {
     }
 
     @Override
-    public UserDTO getAllManager() {
+    public List<UserEntity> getAllManager() {
+        return userRepository.findAllByRole(1);
+    }
+
+    @Override
+    public Boolean changePassword(String username, String oldPassword, String newPassword) {
+        UserEntity userEntity = userRepository.findByUsername(username);
+        System.out.println("pass 1:"+ userEntity.getPassword());
+        System.out.println("pass 2:"+ bcryptEncoder.encode(oldPassword));
+        if(userEntity != null && bcryptEncoder.matches(oldPassword, userEntity.getPassword())){
+            userEntity.setPassword(bcryptEncoder.encode(newPassword));
+            System.out.println(bcryptEncoder.encode(newPassword));
+            userRepository.save(userEntity);
+            return true;
+
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean changeProfile(String username,UserChangeProfileForm userChangeProfileForm) {
+        UserEntity userEntity = userRepository.findByUsername(username);
+        if(userEntity != null){
+            userEntity.setPhone(userChangeProfileForm.getPhone());
+            userEntity.setEmail(userChangeProfileForm.getEmail());
+            userEntity.setFullName(userChangeProfileForm.getFullName());
+
+            userRepository.save(userEntity);
+            SecurityUtils.getPrincipal().setEmail(userChangeProfileForm.getEmail());
+            SecurityUtils.getPrincipal().setFullName(userChangeProfileForm.getFullName());
+            SecurityUtils.getPrincipal().setPhone(userChangeProfileForm.getPhone());
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    @Override
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Boolean deleteUser(Long id) {
+        if(userRepository.findByUserId(id) != null){
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean lockUser(Long id) {
+        UserEntity userEntity = userRepository.findByUserId(id);
+        if(userRepository.findByUserId(id) != null){
+            userEntity.setStatus(0);
+            userRepository.save(userEntity);
+            return true;
+        }
         return null;
+    }
+
+    @Override
+    public Boolean editRoleUser(Long id, int role) {
+        UserEntity userEntity = userRepository.findByUserId(id);
+        if(userRepository.findByUserId(id) != null){
+            userEntity.setRole(role);
+            userRepository.save(userEntity);
+            return true;
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean addEmployee(UserEntity userEntity) {
+        UserEntity userCheck = userRepository.findByEmailOrEmail(userEntity.getUsername(), userEntity.getUsername());
+        if(userCheck == null){
+            userRepository.save(userEntity);
+            return true;
+        }
+
+        return false;
     }
 }

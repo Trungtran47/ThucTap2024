@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/manage/admin/shift")
+@RequestMapping("/manage/manager/shift")
 public class ShiftController {
     @Autowired
     private IShiftService shiftService;
@@ -24,6 +24,9 @@ public class ShiftController {
 //        System.out.println(list);
         return "admin/shift_list";
     }
+
+
+
     @GetMapping("/add")
     public String addShift(Model model) {
         return "admin/shift_form";

@@ -74,8 +74,9 @@
 
         <security:access-denied-handler error-page="/accessDenied" />
         <security:intercept-url pattern="/web/**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url pattern="/manage/admin/**" access="hasRole('ROLE_MANAGER')"/>
-        <security:intercept-url pattern="/manage/**" access="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')"/>
+        <security:intercept-url pattern="/manage/manager/**" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/manage/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/manage/**" access="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER', 'ROLE_ADMIN')"/>
 <!--        <security:intercept-url pattern="/**" access="permitAll"/>-->
         <security:intercept-url pattern="/register" access="permitAll"/>
         <security:intercept-url pattern="/login" access="permitAll"/>
@@ -104,7 +105,10 @@
             <security:password-encoder ref="bcryptEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
-    <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+    <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg value="10" /> <!-- Độ mạnh của mã hóa, thường từ 4 đến 31, giá trị mặc định là 10 -->
+    </bean>
+<!--    <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />-->
     <bean id="customUserDetailsService" class="com.example.service.impl.CustomUserDetailsService" />
 
     <jpa:repositories base-package="com.example.repository"></jpa:repositories>
