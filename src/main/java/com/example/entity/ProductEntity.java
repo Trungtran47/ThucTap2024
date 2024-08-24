@@ -17,6 +17,8 @@ public class ProductEntity extends BaseEntity{
     private double price;
     @Column(name = "description",length = 255 )
     private String description;
+    @Column(name = "total_quality",length = 255 )
+    private int totalQuality = 0;
     @Column(name = "image")
     private String image;
     @ManyToOne
@@ -91,5 +93,13 @@ public class ProductEntity extends BaseEntity{
 
     public void setMaterials(Set<ProductMaterialEntity> materials) {
         this.materials = materials;
+    }
+
+    public int getTotalQuality() {
+        return totalQuality;
+    }
+
+    public void setTotalQuality(int totalQuality) {
+        this.totalQuality = totalQuality;
     }
 }

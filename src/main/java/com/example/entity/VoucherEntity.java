@@ -15,11 +15,11 @@ public class VoucherEntity extends BaseEntity{
     @Column(name = "voucher_discount")
     private Long discount;
 
+    @Column(name = "voucher_code")
+    private String code;
+
     @OneToMany(mappedBy = "voucher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<VoucherDetailEntity> vouchers;
-
-
-
     public Long getVoucherId() {
         return voucherId;
     }
@@ -42,5 +42,13 @@ public class VoucherEntity extends BaseEntity{
 
     public void setVouchers(Set<VoucherDetailEntity> vouchers) {
         this.vouchers = vouchers;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

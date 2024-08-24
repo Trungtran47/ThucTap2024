@@ -3,6 +3,8 @@ package com.example.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 import com.example.entity.CategoryEntity;
@@ -29,23 +31,32 @@ public class CategoryServiceImp implements ICategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public void saveCategory(CategoryEntity category, MultipartFile file) throws IOException {
+    public void save(CategoryEntity category, MultipartFile file, String uploadDir) throws IOException {
         if (!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
-            
-            
-            String uploadDir = servletContext.getRealPath("/assets/CategoryImage/");
-            
+//            String uploadDir = System.getProperty("user.dir") + "/src/main/webapp/resources/category";
+//            String uploadDir = "src/main/webapp/resources/category/";
+            String extension = "";
+
             // Tạo thư mục nếu chưa tồn tại
             File dir = new File(uploadDir);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            
+
+            if (fileName != null && fileName.contains(".")) {
+                extension = fileName.substring(fileName.lastIndexOf("."));
+            }
+
+            // Tạo tên file ngẫu nhiên duy nhất
+            String randomFileName = UUID.randomUUID().toString() + extension;
             // Tạo đường dẫn đầy đủ để lưu file
-            String filePath = uploadDir + File.separator + fileName;
+            String filePath = uploadDir + File.separator + randomFileName;
             file.transferTo(new File(filePath));
-            
+            System.out.println(filePath);
+
+            String linkfile = randomFileName;
+            category.setImage(linkfile);
             // Lưu tên file hoặc đường dẫn vào cơ sở dữ liệu
 //            category.setImage(filePath);
             categoryRepository.save(category);
@@ -53,8 +64,13 @@ public class CategoryServiceImp implements ICategoryService {
       
     }
 
-    public void deleteCategory(Long id) {
-        categoryRepository.deleteById(id);
+    public Boolean deleteCategory(Long id) {
+        Optional<CategoryEntity> categoryOpt = categoryRepository.findById(id);
+        if(categoryOpt != null){
+            categoryRepository.deleteById(id);
+            return true;
+        }
+       return false;
     }
 
 	

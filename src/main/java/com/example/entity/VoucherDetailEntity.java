@@ -2,6 +2,8 @@ package com.example.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "voucher_detail")
 public class VoucherDetailEntity {
@@ -22,7 +24,7 @@ public class VoucherDetailEntity {
     private int quantity;
 
     @Column(name = "shelf_life")
-    private int shelfLife;
+    private LocalDate shelfLife;
 
     public Long getId() {
         return id;
@@ -56,11 +58,11 @@ public class VoucherDetailEntity {
         this.quantity = quantity;
     }
 
-    public int getShelfLife() {
+    public LocalDate getShelfLife() {
         return shelfLife;
     }
 
-    public void setShelfLife(int shelfLife) {
+    public void setShelfLife(LocalDate shelfLife) {
         this.shelfLife = shelfLife;
     }
 }

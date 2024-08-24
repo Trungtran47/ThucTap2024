@@ -20,6 +20,9 @@ public class OrderInDetailEntity extends BaseEntity{
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "total_invoice")
+    private float totalInvoice;
+
     public int getId() {
         return id;
     }
@@ -50,5 +53,13 @@ public class OrderInDetailEntity extends BaseEntity{
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public float getTotalInvoice() {
+        return totalInvoice;
+    }
+
+    public void setTotalInvoice(float totalInvoice) {
+        this.totalInvoice = totalInvoice;
     }
 }

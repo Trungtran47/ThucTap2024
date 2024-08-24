@@ -22,6 +22,11 @@ public class OrderEntity extends BaseEntity{
     private UserEntity user;
 
 
+
+    @Column(name = "type")
+    private int type;
+
+
     @OneToMany(mappedBy = "orderOut",cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private Set<OrderOutDetailEntity> orderOutDetails;
 
@@ -75,5 +80,13 @@ public class OrderEntity extends BaseEntity{
 
     public void setOrderInDetails(Set<OrderInDetailEntity> orderInDetails) {
         this.orderInDetails = orderInDetails;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

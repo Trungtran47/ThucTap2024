@@ -27,22 +27,22 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="<c:url value='/manage/order-in/new'/>" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Thêm ca làm việc</a>
+                            <a href="<c:url value='/manage/order-in/new'/>" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Tạo ca làm việc</a>
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-end">
                                 <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
-                                <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                <button type="button" class="btn btn-light mb-2">Export</button>
+                                <button type="button" class="btn btn-success mb-2 me-1" data-bs-toggle="modal" data-bs-target="#addEmployeeToShiftModal">Thêm nhân viên vào ca</button>
                             </div>
                         </div><!-- end col-->
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-centered" id="products-datatable">
+                        <table class="table table-centered table-list" >
                             <thead class="table-light">
 
                             <tr>
+                                <th>STT</th>
                                 <th>Ca làm việc</th>
                                 <th class="d-none d-xl-table-cell">Thời gian bắt đầu</th>
                                 <th class="d-none d-xl-table-cell">Thời gian kết thúc</th>
@@ -52,52 +52,31 @@
 
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="d-none d-xl-table-cell">7:00</td>
-                                <td class="d-none d-xl-table-cell">8:00</td>
-                                <td class="d-none d-xl-table-cell">20.000</td>
 
-                                <td class="table-action">
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                    <a href="<c:url value='/shifts/edit/${shift.shiftId}'/>" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="<c:url value='/shifts/delete/${shift.shiftId}'/>" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                </td>
+                            <c:forEach var="shift" items="${shifts}">
+                                <tr>
+                                    <td></td>
+                                    <td>${shift.shiftName}</td>
+                                    <td>${shift.startTime}</td>
 
 
-                            </tr>
+                                    <td>${shift.endTime}</td>
+                                    <td>${shift.salary}</td>
 
 
-<%--                            <jsp:useBean id="orders" scope="request" type="java.util.List"/>--%>
-<%--                            <c:forEach var="order" items="${orders}">--%>
-<%--                                <tr>--%>
-<%--                                        &lt;%&ndash;                                    <td>&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash;                                        <div class="form-check">&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash;                                            <input type="checkbox" class="form-check-input" >&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash;                                            <label class="form-check-label" >&nbsp;</label>&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash;                                        </div>&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash;                                    </td>&ndash;%&gt;--%>
-<%--                                    <td>${order.orderId}</td>--%>
-<%--                                    <td>${order.customer.nameCustomer}</td>--%>
+                                        <%--                <td>${order.orderType}</td>--%>
+                                        <%-- <td>${order.userId}</td> --%>
+                                        <%-- <td>${order.customerId}</td> --%>
+                                    <!-- Điều chỉnh theo thuộc tính thực tế -->
+                                    <!-- Điều chỉnh theo thuộc tính thực tế -->
 
-
-<%--                                    <td>${order.orderDate}</td>--%>
-<%--                                    <td>${order.orderTotal}</td>--%>
-<%--                                    <td>${order.user.username}</td>--%>
-
-<%--                                        &lt;%&ndash;                <td>${order.orderType}</td>&ndash;%&gt;--%>
-<%--                                        &lt;%&ndash; <td>${order.userId}</td> &ndash;%&gt;--%>
-<%--                                        &lt;%&ndash; <td>${order.customerId}</td> &ndash;%&gt;--%>
-<%--                                    <!-- Điều chỉnh theo thuộc tính thực tế -->--%>
-<%--                                    <!-- Điều chỉnh theo thuộc tính thực tế -->--%>
-
-<%--                                    <td class="table-action">--%>
-<%--                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>--%>
-<%--                                        <a href="<c:url value='/manage/order/edit/${order.orderId}' />" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>--%>
-<%--                                        <a href="<c:url value='/manage/order/delete/${order.orderId }' />" class="action-icon"> <i class="mdi mdi-delete"></i></a>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                            </c:forEach>--%>
+                                    <td class="table-action">
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                        <a href="<c:url value='/manage/order/edit/${shift.shiftId}' />" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="<c:url value='/manage/order/delete/${shift.shiftId }' />" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
 
 
                             </tbody>
@@ -108,5 +87,45 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
-
 </div>
+<div class="modal fade" id="addEmployeeToShiftModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Chỉnh sửa người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" action="<c:url value="/manage/manager/employee/edit-role"/>" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Chức vụ</label>
+                        <select class="form-select" id="role" name="role">
+
+                            <c:if test="${user.role == 0}">
+                                <option value="0">Admin</option>
+                            </c:if>
+
+                            <option value="1">Quản lý</option>
+                            <option value="2">Nhân viên</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="userId" name="userId">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" id="saveButton">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- third party js -->
+

@@ -11,12 +11,12 @@ public class CustomerEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long customerId;
-    @Column(name = "name_customer",length = 255, nullable = false)
+    @Column(name = "customer_name",length = 255, nullable = false)
     private String nameCustomer;
-    @Column(name = "phone_customer",length = 12, nullable = false)
+    @Column(name = "customer_phone",length = 12, nullable = false)
     private String phoneCustomer;
-    @Column(name = "address",length = 255)
-    private String address;
+    @Column(name = "customer_email",length = 255)
+    private String emailCustomer;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private Set<OrderOutDetailEntity> ordersOut;
@@ -48,12 +48,12 @@ public class CustomerEntity extends BaseEntity{
         this.phoneCustomer = phoneCustomer;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmailCustomer() {
+        return emailCustomer;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmailCustomer(String emailCustomer) {
+        this.emailCustomer = emailCustomer;
     }
 
     public Set<OrderOutDetailEntity> getOrdersOut() {

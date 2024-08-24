@@ -74,7 +74,7 @@
             </li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarProduct" aria-expanded="false" aria-controls="sidebarProduct" class="side-nav-link">
-                    <i class="uil-store"></i>
+                    <i class="uil-envelope"></i>
                     <span>Sản phẩm</span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -85,9 +85,6 @@
                         </li>
                         <li>
                             <a href="<c:url value="/manage/product/new"/>">Thêm sản phẩm</a>
-                        </li>
-                        <li>
-                            <a href="">Orders</a>
                         </li>
 
                     </ul>
@@ -102,15 +99,56 @@
                 <div class="collapse" id="sidebarCategory">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="<c:url value=""/>">Danh sách danh mục</a>
+                            <a href="<c:url value="/manage/category/list"/>">Danh sách danh mục</a>
                         </li>
                         <li>
-                            <a href="">Thêm Danh mục</a>
+                            <a href="<c:url value="/manage/category/new"/>">Thêm Danh mục</a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarCustomer" aria-expanded="false" aria-controls="sidebarCustomer" class="side-nav-link">
+                    <i class="uil-user"></i>
+                    <span>Khách hàng</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarCustomer">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="<c:url value="/manage/customer/list"/>">Danh sách khách hàng</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/manage/customer/new"/>">Thêm khách hàng</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarVoucher" aria-expanded="false" aria-controls="sidebarVoucher" class="side-nav-link">
+                    <i class="uil-user"></i>
+                    <span>Mã giảm giá</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarVoucher">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="<c:url value="/manage/voucher/list"/>">Danh sách mã giảm giá</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/manage/voucher/new"/>">Thêm mã giảm giá</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/manage/voucher-detail/send"/>">Gửi mã giảm giá</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <%
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
                 List<String> rolesToCheck = List.of("ROLE_MANAGER", "ROLE_ADMIN");
@@ -154,10 +192,13 @@
                 <div class="collapse" id="sidebarTasks">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="<c:url value="/manage/admin/shift/list"/>">Danh sách ca làm việc</a>
+                            <a href="<c:url value="/manage/manager/shift/calendar"/>">Lịch làm việc</a>
                         </li>
                         <li>
-                            <a href="<c:url value="/manage/admin/shift/add"/>">Thêm ca làm việc</a>
+                            <a href="<c:url value="/manage/manager/shift/list"/>">Danh sách ca làm việc</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/manage/manager/shift/new"/>">Thêm ca làm việc</a>
                         </li>
                     </ul>
                 </div>
@@ -165,7 +206,7 @@
 
             </c:if>
             <li class="side-nav-item">
-                <a href="apps-file-manager.html" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-folder-plus"></i>
                     <span> File Manager </span>
                 </a>

@@ -30,7 +30,7 @@ public class UserEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<OrderEntity> orderDetail;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<ShiftDetailEntity> shiftDetail;
 
     public Long getUser_id() {

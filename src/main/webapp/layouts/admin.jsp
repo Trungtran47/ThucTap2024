@@ -35,6 +35,10 @@
 <%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>--%>
 <%--    <script src="https://cdn.datatables.net/2.1.3/js/jquery.dataTables.min.js"></script>--%>
 <%--    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.min.js"></script>--%>
+
+
+<%--    --%>
+    <link href="<c:url value='/template/assets/css/vendor/fullcalendar.min.css'/>" rel="stylesheet" type="text/css">
 </head>
 
 <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -46,6 +50,15 @@
         <div class="content-page">
             <main>
                 <div class="content">
+                    <div class="pt-3">
+                        <c:if test="${not empty message}">
+                            <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                                <strong></strong>${message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </c:if>
+                    </div>
+
                     <jsp:include page="${body}" />
                 </div>
             </main>
@@ -82,9 +95,16 @@
 <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>--%>
 <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.js"></script>
+
+<!-- third party js ends -->
+<script src="<c:url value='/template/assets/js/vendor/fullcalendar.min.js'/>"></script>
+
+<!-- demo app --><script src="<c:url value='/template/assets/js/pages/demo.calendar.js'/>"></script>
+
+
 <script>
     $(document).ready(function() {
-        $('#table-list').DataTable({
+        $('.table-list').DataTable({
             "language": {
                 "sEmptyTable": "Không có dữ liệu trong bảng",
                 "sInfo": "Đang hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ mục",

@@ -20,7 +20,7 @@ public class ShiftEntity extends BaseEntity {
     private LocalTime endTime;
     @Column(name = "salary")
     private float Salary;
-    @OneToMany(mappedBy = "shift", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shift", cascade = CascadeType.ALL)
     private Set<ShiftDetailEntity> shiftDetail;
 
     public Long getShiftId() {

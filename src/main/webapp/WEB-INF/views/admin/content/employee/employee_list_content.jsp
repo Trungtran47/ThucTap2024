@@ -10,12 +10,7 @@
 <script src="https://kit.fontawesome.com/6f5caf640a.js" crossorigin="anonymous"></script>
 <!-- Start Content-->
 <div class="container-fluid">
-    <c:if test="${not empty message}">
-        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
-            <strong></strong>${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </c:if>
+
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -40,11 +35,11 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table id="table-list" class="table table-centered display" style="width: 100%">
+                        <table class="table table-centered display table-list" style="width: 100%">
                             <thead class="table-light">
 
                             <tr>
-                                <th class="d-none d-xl-table-cell">Id</th>
+                                <th class="d-none d-xl-table-cell">STT</th>
                                 <th class="d-none d-xl-table-cell">Tên Đăng nhập</th>
 
                                 <th class="d-none d-md-table-cell">Họ và tên</th>
@@ -54,7 +49,7 @@
                                 <th class="d-none d-md-table-cell">Trạng thái</th>
                                 <th class="d-none d-md-table-cell">Quản lý</th>
 
-                                <th style="width: 85px;">Action</th>
+                                <th style="width: 85px;">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>

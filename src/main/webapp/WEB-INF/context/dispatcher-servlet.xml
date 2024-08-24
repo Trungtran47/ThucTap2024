@@ -19,12 +19,23 @@
 <!--    <context:component-scan base-package="com.example.controller"/>-->
     <context:annotation-config />
     <context:component-scan base-package="com.example" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
 
     <!-- Add support for conversion, formatting and validation support -->
 <!--    <context:annotation-config />-->
 <!--    <context:component-scan base-package="com.example" />-->
     <!-- Enable Spring MVC annotation-driven -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <!-- Bạn có thể thêm các bộ chuyển đổi khác ở đây nếu cần -->
+        </mvc:message-converters>
+
+    </mvc:annotation-driven>
+
+
+
 
     <!-- Internal Resource View Resolver for JSP -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,7 +43,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <mvc:resources mapping="/template/**" location="/template/"/>
-    <mvc:resources mapping="/data/**" location="/resources/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!-- Config JPA SQL Server -->
     <bean id="dataSource"
@@ -57,7 +68,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">none</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
@@ -81,7 +92,8 @@
         <security:intercept-url pattern="/register" access="permitAll"/>
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/template/**" access="permitAll"/>
-        <security:intercept-url pattern="/data/**" access="permitAll"/>
+        <security:intercept-url pattern="/resources/**" access="permitAll"/>
+
         <security:form-login 	login-page="/login"
                                 login-processing-url="/login"
                                 default-target-url="/manage/home"

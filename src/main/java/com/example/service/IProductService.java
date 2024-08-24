@@ -11,6 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface IProductService {
 	List<ProductEntity> getAllProducts();
     ProductEntity getProductById(Long id);
-    void saveProduct(ProductEntity product, MultipartFile file) throws IOException;
+    void save(ProductEntity product,Long categoryId, MultipartFile file, String uploadDir) throws IOException;
     void deleteProduct(Long id);
 }
