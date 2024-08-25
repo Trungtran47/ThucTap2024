@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class OrderEntity extends BaseEntity{
     @Column(name = "order_total")
     private double orderTotal;
     @Column(name = "order_date")
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
@@ -24,7 +25,7 @@ public class OrderEntity extends BaseEntity{
 
 
     @Column(name = "type")
-    private int type;
+    private int orderType;
 
 
     @OneToMany(mappedBy = "orderOut",cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
@@ -44,11 +45,11 @@ public class OrderEntity extends BaseEntity{
         this.orderTotal = orderTotal;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -82,11 +83,11 @@ public class OrderEntity extends BaseEntity{
         this.orderInDetails = orderInDetails;
     }
 
-    public int getType() {
-        return type;
+    public int getOrderType() {
+        return orderType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setOrderType(int orderType) {
+        this.orderType = orderType;
     }
 }

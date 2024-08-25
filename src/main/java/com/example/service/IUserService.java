@@ -7,6 +7,7 @@ import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IUserService {
@@ -30,6 +31,6 @@ public interface IUserService {
 
     Boolean addEmployee(UserEntity userEntity);
 
-
+    List<UserEntity> findAllUsersNotInShift(Long shiftID, LocalDate shiftDate);
 
 }

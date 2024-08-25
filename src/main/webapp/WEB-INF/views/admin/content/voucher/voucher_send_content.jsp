@@ -49,7 +49,7 @@
                         </c:forEach>
 
                     </select>
-                </div>
+                    </div>
                     <div class="mb-3">
                         <label for="quantity" class="form-label">Số lượng</label> <input
                             type="number" id="quantity" class="form-control"

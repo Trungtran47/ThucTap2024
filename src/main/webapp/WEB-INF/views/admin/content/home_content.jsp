@@ -1,3 +1,13 @@
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/common/taglib.jsp"%>
+<%
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy EEEE");
+    pageContext.setAttribute("formatter", formatter);
+    LocalDate today = (LocalDate) request.getAttribute("today");
+    pageContext.setAttribute("today", today);
+%>
 <div class="container-fluid">
 
     <!-- start page title -->
@@ -20,7 +30,7 @@
                         </a>
                     </form>
                 </div>
-                <h4 class="page-title">Dashboard</h4>
+                <h4 class="page-title">Trang chủ</h4>
 
             </div>
         </div>
@@ -28,10 +38,10 @@
     <!-- end page title -->
 
     <div class="row">
-        <div class="col-xl-5 col-lg-6">
+        <div class="col-xl-12 col-lg-12">
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -47,7 +57,7 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
 
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -62,10 +72,8 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col-->
-            </div> <!-- end row -->
 
-            <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -81,7 +89,7 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
 
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
@@ -97,6 +105,93 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div> <!-- end row -->
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="d-grid">
+                                <button class="btn btn-lg font-16 btn-danger" id="btn-new-event"><i class="mdi mdi-plus-circle-outline"></i> Điểm danh</button>
+                            </div>
+                            <div class="pt-3">
+
+                                <div id="external-events" class="m-t-20">
+                                    <br>
+                                    <p class="text-muted">
+                                    </p>
+                                    <div class="external-event bg-success-lighten text-success" data-class="bg-success">
+                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i>Hoàn thành
+                                    </div>
+                                    <div class="external-event bg-info-lighten text-info" data-class="bg-info">
+                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i>Chưa làm
+                                    </div>
+                                    <div class="external-event bg-warning-lighten text-warning" data-class="bg-warning">
+                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i> Đi trễ
+                                    </div>
+                                    <div class="external-event bg-danger-lighten text-danger" data-class="bg-danger">
+                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i>Vắng
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div id="weekly-view" class="schedule-content">
+                                <h5>Lịch làm việc</h5>
+                                <!-- Similar table structure as daily view, but adjusted for weekly view -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered calendar-table" style="max-height: 400px; overflow-y: auto;">
+                                        <thead>
+                                        <tr>
+                                            <th>Thời gian</th>
+
+                                            <c:forEach var="day" items="${daysOfWeek}">
+                                                <th class="${day.equals(today) ? 'bg-warning-lighten' : ''}">
+                                                        ${day.format(formatter)}
+                                                </th>
+                                            </c:forEach>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${shifts}" var="shift">
+                                            <tr>
+                                                <td>${shift.startTime}</td>
+                                                <c:forEach var="item" items="${daysOfWeek}">
+                                                    <td rowspan="2" class="text-center ${item.equals(today) ? "bg-warning-lighten" : ""}">
+                                                        <!-- Nút End Time -->
+                                                        <c:forEach var="myShift" items="${myShifts}">
+                                                            <c:if test="${item.equals(myShift.date) && shift.shiftId == myShift.shift.shiftId}">
+                                                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                        data-shift-id="${shift.shiftId}"
+                                                                        data-shift-date="${item}">
+                                                                        ${shift.shiftName}
+                                                                </button>
+
+                                                            </c:if>
+
+
+
+                                                        </c:forEach>
+
+                                                    </td>
+
+                                                </c:forEach>
+                                            </tr>
+                                            <tr>
+                                                <td>${shift.endTime}</td>
+                                            </tr>
+                                        </c:forEach>
+                                        <!-- Add more rows as needed -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- end row -->
+                </div>
+
+            </div>
 
         </div> <!-- end col -->
 

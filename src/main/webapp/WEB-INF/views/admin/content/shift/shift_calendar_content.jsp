@@ -49,36 +49,33 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="d-grid">
-                                <button class="btn btn-lg font-16 btn-danger" id="btn-new-event"><i class="mdi mdi-plus-circle-outline"></i> Create New Event</button>
-                            </div>
+                        <div class="col-lg-2">
+<%--                            <div class="d-grid">--%>
+<%--                                <button class="btn btn-lg font-16 btn-danger" id="btn-new-event"><i class="mdi mdi-plus-circle-outline"></i> Create New Event</button>--%>
+<%--                            </div>--%>
                             <div id="event-list" class="m-t-20">
-                                <p class="text-muted">List of events</p>
+
                                 <ul class="list-group">
-                                    <li class="list-group-item bg-success-lighten text-success">
-                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i> New Theme Release
+
+                                    <li class="list-group-item bg-success-lighten text-success" id="btn-weekly-view">
+                                        <b>Lịch tuần</b>
                                     </li>
-                                    <li class="list-group-item bg-info-lighten text-info">
-                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i> My Event
+                                    <li class="list-group-item bg-info-lighten text-info" id="btn-daily-view">
+                                        <b>Lịch ngày Hôm nay</b>
                                     </li>
-                                    <li class="list-group-item bg-warning-lighten text-warning">
-                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i> Meet Manager
+                                    <li class="list-group-item bg-warning-lighten text-info" id="btn-today-employees">
+                                        <b>Ca hôm nay</b>
                                     </li>
-                                    <li class="list-group-item bg-danger-lighten text-danger">
-                                        <i class="mdi mdi-checkbox-blank-circle me-2 vertical-middle"></i> Create New Theme
-                                    </li>
+
                                 </ul>
                             </div>
                         </div> <!-- end col-->
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-10">
                             <div class="row">
                                 <div class="col-5">
                                     <div class="btn-group" role="group" aria-label="View Switcher">
-                                        <button type="button" class="btn btn-primary" >trước</button>
-                                        <button type="button" class="btn btn-primary" >Sau</button>
-
+                                        <button type="button" class="btn btn-primary" >Tuần trước</button>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -86,9 +83,10 @@
                                 </div>
                                 <div class="col-4" style="display: flex; justify-content: flex-end;">
                                     <div class="btn-group" role="group" aria-label="View Switcher">
-                                        <button type="button" class="btn btn-primary" id="btn-daily-view">Ngày</button>
-                                        <button type="button" class="btn btn-primary" id="btn-weekly-view">Tuần</button>
-                                        <button type="button" class="btn btn-primary" id="btn-today-employees">Ca</button>
+<%--                                        <button type="button" class="btn btn-primary" id="btn-daily-view">Ngày</button>--%>
+<%--                                        <button type="button" class="btn btn-primary" id="btn-weekly-view">Tuần</button>--%>
+<%--                                        <button type="button" class="btn btn-primary" id="btn-today-employees">Ca</button>--%>
+                                            <button type="button" class="btn btn-primary" >Tuần Sau</button>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +95,7 @@
                                 <!-- Calendar-like Grid -->
                                 <div id="schedule-view" class="calendar-view">
                                     <!-- Daily View -->
-                                    <div id="daily-view" class="schedule-content">
+                                    <div id="daily-view" class="schedule-content d-none">
                                         <h5>Ca làm việc Ngày: </h5>
                                         <div class="table-responsive">
                                             <table class="table table-bordered calendar-table">
@@ -123,7 +121,7 @@
                                     </div>
 
                                     <!-- Weekly View -->
-                                    <div id="weekly-view" class="schedule-content d-none">
+                                    <div id="weekly-view" class="schedule-content ">
                                         <h5>Tuần</h5>
                                         <!-- Similar table structure as daily view, but adjusted for weekly view -->
                                         <div class="table-responsive">
@@ -158,16 +156,6 @@
                                                         <td>${shift.endTime}</td>
                                                     </tr>
                                                 </c:forEach>
-                                                <tr>
-                                                    <td>08:00 - 09:00</td>
-                                                    <td class="calendar-cell" data-day="Monday" data-time="08:00 - 09:00">Shift 1</td>
-                                                    <td class="calendar-cell" data-day="Tuesday" data-time="08:00 - 09:00">Shift 2</td>
-                                                    <td class="calendar-cell" data-day="Wednesday" data-time="08:00 - 09:00">Shift 3</td>
-                                                    <td class="calendar-cell" data-day="Thursday" data-time="08:00 - 09:00">Shift 4</td>
-                                                    <td class="calendar-cell" data-day="Friday" data-time="08:00 - 09:00">Shift 5</td>
-                                                    <td class="calendar-cell" data-day="Saturday" data-time="08:00 - 09:00">Shift 6</td>
-                                                    <td class="calendar-cell" data-day="Sunday" data-time="08:00 - 09:00">Shift 7</td>
-                                                </tr>
                                                 <!-- Add more rows as needed -->
                                                 </tbody>
                                             </table>
@@ -178,10 +166,19 @@
                                     <div id="today-employees" class="schedule-content d-none">
                                         <h5>Nhân viên làm việc hôm nay</h5>
                                         <!-- Example list of employees -->
-                                        <ul class="list-group">
-                                            <li class="list-group-item">Employee 1</li>
-                                            <li class="list-group-item">Employee 2</li>
-                                            <li class="list-group-item">Employee 3</li>
+                                        <ul class="list-group pt-3">
+                                            <c:set var="previousShift" value="" />
+                                            <c:forEach var="item" items="${listShiftToDay}">
+                                                <c:if test="${item.shift.shiftId != previousShift}">
+                                                    <c:set var="previousShift" value="${item.shift.shiftId}" />
+                                                    <hr>
+                                                </c:if>
+                                                <li class="list-group-item bg-warning-lighten"><b>(${item.shift.startTime} - ${item.shift.endTime}) </b>: ${item.user.username} - ${item.shift.shiftName}</li>
+
+
+                                            </c:forEach>
+
+
                                         </ul>
                                     </div>
                                 </div>
@@ -206,29 +203,32 @@
                                 <!-- Danh sách nhân viên hiện tại trong ca -->
                                 <div class="mb-3">
                                     <label class="form-label">Nhân viên trong ca:</label>
-                                    <ul id="employeeList" class="list-group">
-                                        <!-- Danh sách nhân viên sẽ được tạo động -->
-                                        <c:forEach var="employee" items="${employeesInShift}">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    ${employee.name}
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="removeEmployee('${employee.id}')">Xóa</button>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
+                                    <table class="table table-striped" id="employeeTable">
+                                        <thead>
+                                        <tr>
+                                            <th>Tên</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="employeeList">
+                                        <!-- Các hàng nhân viên sẽ được thêm vào đây -->
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <!-- Thêm nhân viên mới vào ca -->
+
                                 <div class="mb-3">
                                     <label for="newEmployee" class="form-label">Thêm nhân viên:</label>
-                                    <select class="form-select" id="newEmployee" name="newEmployeeId">
-                                        <option value="" disabled selected>Chọn nhân viên</option>
-                                        <c:forEach var="employee" items="${allEmployees}">
-                                            <option value="${employee.id}">${employee.name}</option>
-                                        </c:forEach>
+
+                                    <select class="form-select" aria-label="Default select example" id="newEmployee">
+
                                     </select>
                                 </div>
 
                                 <input type="hidden" id="shiftId" name="shiftId" value="${shiftId}">
+                                <input type="hidden" id="shiftDate" name="shiftId" value="${shiftDate}">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -292,9 +292,10 @@
             // Lấy thông tin từ nút đã kích hoạt modal
             var button = $(event.relatedTarget);
             var shiftId = button.data('shift-id'); // Lấy shiftId từ thuộc tính data của nút
+            var shiftDate = button.data('shift-date');
             console.log(shiftId)
             // Gọi API để lấy danh sách nhân viên trong ca
-            fetch(`/Mock-Project/manage/manager/shift/api/detail/`+ shiftId)
+            fetch(`/Mock-Project/manage/manager/shift/api/detail/`+ shiftId + "/" + shiftDate)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -302,58 +303,115 @@
                     $('#employeeList').empty();
 
                     // Thêm các nhân viên vào danh sách
-                    data.employeesInShift.forEach(employee => {
-                        $('#employeeList').append(
-                            `<li class="list-group-item d-flex justify-content-between align-items-center">
-                            ${employee.user.fullName}
-                            <button type="button" class="btn btn-danger btn-sm" onclick="removeEmployee(${employee.id})">Xóa</button>
-                        </li>`
+                    data.forEach(employee => {
+                        const username = employee.user.username || 'Chưa có tên';
+                        const status = employee.status === 1 ? 'Đã làm' : 'Chưa làm';
+                        const userId = employee.user.id || '#';
+                        const checkDisable = employee.status === 1 ? 'disabled' : '';
+                        const $row = $('<tr></tr>');
+                        $row.append(`<td>`+ username +`</td>`);
+                        $row.append(`<td>`+ status + `</td>`);
+                        $row.append(
+                            `<td>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="showEmployeeDetails(`+userId + `)"`+checkDisable+`>Xóa</button>
+                            </td>`
                         );
+
+                        $('#employeeList').append($row);
+
+                        // Gán giá trị shiftId vào input ẩn
+
                     });
 
-                    // Cập nhật các tùy chọn trong select
-                    $('#newEmployee').empty().append('<option value="" disabled selected>Chọn nhân viên</option>');
-                    data.allEmployees.forEach(employee => {
-                        $('#newEmployee').append(`<option value="${employee.id}">${employee.name}</option>`);
-                    });
-
-                    // Gán giá trị shiftId vào input ẩn
                     $('#shiftId').val(shiftId);
+                    $('#shiftDate').val(shiftDate)
+
+
                 })
                 .catch(error => {
                     console.error('Error fetching employee data:', error);
                 });
+            fetch(`/Mock-Project/manage/manager/employee/api/employee/` + shiftId + "/" + shiftDate)
+                .then(response => response.json())
+                .then(data => {
+                    // Cập nhật các tùy chọn trong select
+                    $('#newEmployee').empty().append('<option value="" disabled selected>Chọn nhân viên</option>');
+                    data.forEach(employee => {
+                        $('#newEmployee').append(`<option value="` + employee.id + `">`+ employee.username +`</option>`);
+                    });
+                }).catch(error => {
+                console.error('Error fetching employee data:', error);
+            });
         });
 
 
 
     });
 
-
-
     // Hàm để xóa nhân viên khỏi danh sách
     function removeEmployee(employeeId) {
         $('#employee-' + employeeId).remove(); // Xóa nhân viên khỏi danh sách
     }
 
-    // Hàm để thêm nhân viên mới vào danh sách
     function addEmployee() {
         var newEmployeeId = $('#newEmployee').val(); // Lấy ID nhân viên mới từ select
         var newEmployeeName = $('#newEmployee option:selected').text(); // Lấy tên nhân viên mới
 
+        var currentShiftId = $('#shiftId').val()
+        var currentShiftDate = $('#shiftDate').val()
+        console.log(currentShiftId)
+        console.log(newEmployeeId)
+        console.log(newEmployeeName)
         // Kiểm tra xem nhân viên đã có trong danh sách hay chưa
         if ($('#employee-' + newEmployeeId).length == 0) {
-            // Thêm nhân viên mới vào danh sách
-            $('#employeeList').append(
-                '<li id="employee-' + newEmployeeId + '" class="list-group-item d-flex justify-content-between align-items-center">' +
-                newEmployeeName +
-                '<button type="button" class="btn btn-danger btn-sm" onclick="removeEmployee(' + newEmployeeId + ')">Xóa</button>' +
-                '</li>'
-            );
+            // Gửi yêu cầu thêm nhân viên mới vào cơ sở dữ liệu
+            fetch('/Mock-Project/manage/manager/shift/api/add-employee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userID: newEmployeeId,  // Truyền ID nhân viên
+                    shiftID: currentShiftId,
+                    date: currentShiftDate,// Truyền ID ca làm việc (phải có biến `currentShiftId` lưu trữ ID ca làm việc hiện tại)
+                    // Bạn có thể thêm các thuộc tính khác nếu cần
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Nếu thêm vào cơ sở dữ liệu thành công, thêm nhân viên vào danh sách
+                    const username = newEmployeeName || 'Chưa có tên';
+                    const status = 'Chưa làm';
+                    const userId = newEmployeeId || '#';
+
+                    const $row = $('<tr></tr>');
+                    $row.append(`<td>`+ username +`</td>`);
+                    $row.append(`<td>`+ status + `</td>`);
+                    $row.append(
+                        `<td>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="showEmployeeDetails(`+userId +`)">Xóa</button>
+                            </td>`
+                    );
+
+                    $('#employeeList').append($row);
+
+                    $('#shiftId').val(currentShiftId);
+                    $('#shiftDate').val(currentShiftDate)
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                    alert('Đã xảy ra lỗi khi thêm nhân viên.');
+                });
         } else {
             alert('Nhân viên này đã có trong ca.');
         }
     }
+
 
     // Gọi hàm addEmployee() khi submit form
     $('#editForm').on('submit', function(event) {

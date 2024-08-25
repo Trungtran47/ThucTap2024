@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ public class ShiftDetailEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "shift_id", nullable = false)
+    @JsonBackReference
     private ShiftEntity shift;
 
     @ManyToOne

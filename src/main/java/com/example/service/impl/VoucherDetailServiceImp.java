@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,5 +21,10 @@ public class VoucherDetailServiceImp implements IVoucherDetailService {
     }
     public VoucherDetailEntity findVoucherDetailExist(Long customerId, Long voucherId) {
         return voucherDetailRepository.findVoucherDetailExist(customerId, voucherId);
+    }
+
+    @Override
+    public List<VoucherDetailEntity> findValidVouchersByCustomerId(Long customerId, LocalDate currentDate) {
+        return voucherDetailRepository.findValidVouchersByCustomerId(customerId, currentDate);
     }
 }

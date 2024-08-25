@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -144,5 +145,10 @@ public class UserServiceImp implements IUserService {
         }
 
         return false;
+    }
+
+    @Override
+    public List<UserEntity> findAllUsersNotInShift(Long shiftID , LocalDate shiftDate) {
+        return userRepository.findAllUsersNotInShift(shiftID, shiftDate);
     }
 }

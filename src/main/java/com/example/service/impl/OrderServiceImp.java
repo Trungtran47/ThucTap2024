@@ -12,6 +12,12 @@ import java.util.List;
 public class OrderServiceImp implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;
+
+    @Override
+    public List<OrderEntity> getOrdersByOrderType(int orderType) {
+        return orderRepository.findByOrderType(orderType);
+    }
+
     @Override
     public List<OrderEntity> getAllOrders() {
         return orderRepository.findAll();

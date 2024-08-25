@@ -4,7 +4,8 @@ import com.example.entity.OrderOutDetailEntity;
 
 import java.util.List;
 
-public interface IOrderDetailService {
+public interface IOrderOutDetailService {
+
     List<OrderOutDetailEntity> getAllOrderDetail();
     OrderOutDetailEntity getOrderDetailById(Long id);
     void saveOrderDetail(OrderOutDetailEntity orderDetailEntity);

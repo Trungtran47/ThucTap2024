@@ -44,9 +44,6 @@ public class ShiftController {
 
         return events;
     }
-
-
-
     @GetMapping("/new")
     public String addShift(Model model) {
         return "admin/shift_form";
@@ -65,12 +62,13 @@ public class ShiftController {
         for (int i = 0; i < 7; i++) {
             daysOfWeek.add(startOfWeek.plusDays(i));
         }
-
+        List<ShiftDetailEntity> listShiftToDay = shiftService.listShiftToDay(today);
         // Thêm ngày vào mô hình
         model.addAttribute("daysOfWeek", daysOfWeek);
         model.addAttribute("startOfWeek", startOfWeek);
         model.addAttribute("endOfWeek", endOfWeek);
         model.addAttribute("today", today);
+        model.addAttribute("listShiftToDay", listShiftToDay);
 
 
         List<ShiftEntity> shifts = shiftService.getShifts();

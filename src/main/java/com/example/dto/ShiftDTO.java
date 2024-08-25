@@ -1,29 +1,15 @@
-package com.example.entity;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+package com.example.dto;
 
 import java.time.LocalTime;
 import java.util.Set;
 
-@Entity
-@Table(name = "shifts")
-public class ShiftEntity extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shift_id")
+public class ShiftDTO {
     private Long shiftId;
-    @Column(name = "shift_name",length = 255, nullable = false)
     private String shiftName;
-    @Column(name = "start_time")
     private LocalTime startTime;
-    @Column(name = "end_time")
     private LocalTime endTime;
-    @Column(name = "salary")
-    private float Salary;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shift", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<ShiftDetailEntity> shiftDetail;
+    private float salary;
+    private Set<ShiftDetailDTO> shiftDetail; // DTO cho ShiftDetailEntity
 
     public Long getShiftId() {
         return shiftId;
@@ -58,18 +44,18 @@ public class ShiftEntity extends BaseEntity {
     }
 
     public float getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(float salary) {
-        Salary = salary;
+        this.salary = salary;
     }
 
-    public Set<ShiftDetailEntity> getShiftDetail() {
+    public Set<ShiftDetailDTO> getShiftDetail() {
         return shiftDetail;
     }
 
-    public void setShiftDetail(Set<ShiftDetailEntity> shiftDetail) {
+    public void setShiftDetail(Set<ShiftDetailDTO> shiftDetail) {
         this.shiftDetail = shiftDetail;
     }
 }

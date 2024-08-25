@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -28,9 +29,11 @@ public class UserEntity extends BaseEntity{
     @Column(name = "manager_id")
     private Long IDManager;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+
     private Set<OrderEntity> orderDetail;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<ShiftDetailEntity> shiftDetail;
 
     public Long getUser_id() {
