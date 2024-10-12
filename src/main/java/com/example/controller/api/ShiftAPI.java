@@ -53,4 +53,15 @@ public class ShiftAPI {
         }
 
     }
+    @PostMapping(value = "/roll-attendance/{shiftDetailID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> RollAttendance(@PathVariable Long shiftDetailID){
+        boolean check = shiftService.RollAttendance(shiftDetailID);
+        if(check){
+            System.out.println("Đã điểm danh");
+            return ResponseEntity.ok("Nhân viên đã được thêm vào ca làm việc.");
+        }else {
+            System.out.println("Chưa được điểm danh");
+            return ResponseEntity.badRequest().body("Nhân viên không được thêm vào ca làm việc.");
+        }
+    }
 }

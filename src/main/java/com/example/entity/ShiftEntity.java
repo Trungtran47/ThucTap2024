@@ -13,7 +13,7 @@ public class ShiftEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shift_id")
     private Long shiftId;
-    @Column(name = "shift_name",length = 255, nullable = false)
+    @Column(name = "shift_name", columnDefinition = "NVARCHAR(255)", nullable = false)
     private String shiftName;
     @Column(name = "start_time")
     private LocalTime startTime;

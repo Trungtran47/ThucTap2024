@@ -99,7 +99,14 @@
                                         <td>Không có</td>
                                     </c:if>
                                     <c:if test="${user.IDManager != null}">
-                                        <td>${user.IDManager}</td>
+                                        <c:forEach items="${users}" var="item">
+
+                                            <c:if test="${item.userId == user.IDManager}">
+                                                <td>${item.username}</td>
+                                            </c:if>
+                                        </c:forEach>
+
+
                                     </c:if>
 
 

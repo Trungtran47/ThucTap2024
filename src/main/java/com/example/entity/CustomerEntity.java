@@ -11,7 +11,7 @@ public class CustomerEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long customerId;
-    @Column(name = "customer_name",length = 255, nullable = false)
+    @Column(name = "customer_name",columnDefinition = "NVARCHAR(255)", nullable = false)
     private String nameCustomer;
     @Column(name = "customer_phone",length = 12, nullable = false)
     private String phoneCustomer;

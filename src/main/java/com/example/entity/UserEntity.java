@@ -30,9 +30,8 @@ public class UserEntity extends BaseEntity{
     private Long IDManager;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-
     private Set<OrderEntity> orderDetail;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<ShiftDetailEntity> shiftDetail;
 

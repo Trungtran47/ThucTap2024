@@ -55,15 +55,33 @@
                 </div>
             </li>
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarMaterial" aria-expanded="false" aria-controls="sidebarOrderOut" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span>Nguyên liệu</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarMaterial">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="<c:url value="/manage/material/new"/>">Thêm nguyên liệu</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/manage/material/list"/>">Danh sách nguyên liệu</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarOrderOut" aria-expanded="false" aria-controls="sidebarOrderOut" class="side-nav-link">
                     <i class="uil-envelope"></i>
-                    <span>Nhập hàng</span>
+                    <span>Nhập hàng </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarOrderOut">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="<c:url value="/manage/order-in/new"/>">Đặt hàng</a>
+                            <a href="<c:url value="/manage/order-in/new"/>">Nhập hàng</a>
                         </li>
                         <li>
                             <a href="<c:url value="/manage/order-in/list"/>">Danh sách đơn hàng nhập</a>
@@ -205,14 +223,14 @@
             </li>
 
             </c:if>
-            <li class="side-nav-item">
-                <a href="" class="side-nav-link">
-                    <i class="uil-folder-plus"></i>
-                    <span> File Manager </span>
-                </a>
-            </li>
+<%--            <li class="side-nav-item">--%>
+<%--                <a href="" class="side-nav-link">--%>
+<%--                    <i class="uil-folder-plus"></i>--%>
+<%--                    <span> File Manager </span>--%>
+<%--                </a>--%>
+<%--            </li>--%>
 
-            <li class="side-nav-title side-nav-item">Kho</li>
+<%--            <li class="side-nav-title side-nav-item">Kho</li>--%>
 
         </ul>
         <!-- end Help Box -->

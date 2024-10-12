@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShiftServiceImp implements IShiftService {
@@ -75,6 +77,22 @@ public class ShiftServiceImp implements IShiftService {
     @Override
     public List<ShiftDetailEntity> listShiftOfEmployee(String employeeUsername) {
         return shiftDetailRepository.findAllByUser_Username(employeeUsername);
+    }
+
+    @Override
+    public ShiftDetailEntity findShiftDetailByIDCurrentTime(String username, LocalDate date, LocalTime currentTime) {
+        List<Long> shiftIds = shiftRepository.findShiftIdsByCurrentTime(currentTime);
+        if (shiftIds.isEmpty()) {
+            return null; // Không có ca làm việc phù hợp
+        }
+        UserEntity user = userRepository.findByUsername(username);
+        return shiftDetailRepository.findShiftDetailId(user.getUserId(), shiftIds, date);
+    }
+
+    @Override
+    public Boolean RollAttendance(Long shiftDetailID) {
+        shiftDetailRepository.updateStatusById(shiftDetailID, 1);
+        return false;
     }
 
 }

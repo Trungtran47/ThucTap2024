@@ -28,7 +28,6 @@ public class OrderOutController {
     private ICategoryService iCategoryService;
     @Autowired
     private IVoucherService iVoucherService;
-
     @Autowired
     private  ICustomerService customerService;
 
@@ -67,7 +66,14 @@ public class OrderOutController {
     ) {
 
         try {
-            order.setOrderDate(LocalDateTime.now());
+            if (order.getOrderId() == null) {
+                order.setOrderDate(LocalDateTime.now());
+            } else {
+                if (order.getOrderDate() == null) {
+                    OrderEntity orderdate = iOrderService.getOrderById(order.getOrderId());
+                    order.setOrderDate(orderdate.getOrderDate());
+                }
+            }
             order.setOrderType(0);
             UserEntity user = iUserService.findByUsername(username);
             if (user == null) {
@@ -119,6 +125,7 @@ public class OrderOutController {
                 orderOutDetails.add(orderOutDetailEntity);
             }
         }
+        model.addAttribute("customers", customerService.getAllCustomers());
         model.addAttribute("vouchers", iVoucherService.getAllVouchers());
         model.addAttribute("products", iProductService.getAllProducts());
         model.addAttribute("category",iCategoryService.getAllCategories());

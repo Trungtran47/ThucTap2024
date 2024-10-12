@@ -36,7 +36,6 @@
 
 
 
-
     <!-- Internal Resource View Resolver for JSP -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -51,7 +50,7 @@
         <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
         <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=CoffeeManagement;encrypt=true;trustServerCertificate=true;" />
         <property name="username" value="sa" />
-        <property name="password" value="123456789" />
+        <property name="password" value="472003" />
     </bean>
 
     <!-- Entity Manager Factory Configuration -->
@@ -93,6 +92,7 @@
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/template/**" access="permitAll"/>
         <security:intercept-url pattern="/resources/**" access="permitAll"/>
+        <security:intercept-url pattern="/manage/manager/shift/api/roll-attendance/**" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_USER')"/>
 
         <security:form-login 	login-page="/login"
                                 login-processing-url="/login"

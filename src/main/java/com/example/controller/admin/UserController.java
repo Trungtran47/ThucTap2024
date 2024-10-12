@@ -52,6 +52,7 @@ public class UserController {
 
         List<UserEntity> users = userService.findAll();
 
+
         model.addAttribute("users", users);
         return "admin/employee_list";
     }

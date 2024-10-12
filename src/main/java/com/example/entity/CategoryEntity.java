@@ -11,9 +11,9 @@ public class CategoryEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long categoryId;
-    @Column(name = "category_name",length = 255, nullable = false)
+    @Column(name = "category_name",columnDefinition = "NVARCHAR(255)", nullable = false)
     private String categoryName;
-    @Column(name = "category_description",length = 255)
+    @Column(name = "category_description",columnDefinition = "NVARCHAR(255)")
     private String categoryDescription;
     @Column(name = "image",length = 255)
     private String image;

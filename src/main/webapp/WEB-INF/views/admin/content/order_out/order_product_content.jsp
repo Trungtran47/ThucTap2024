@@ -38,7 +38,7 @@
         margin: 0;
     }
     .productList {
-        max-height: 400px;
+        max-height: 500px;
         overflow-y: auto;
         overflow-x: hidden; /* Ẩn phần tử vượt quá chiều rộng */
         max-width: 100%;
@@ -59,69 +59,65 @@
                             <input type="text" class="form-control form-control-light" id="dash-daterange">
                             <span class="input-group-text bg-primary border-primary text-white"><i class="mdi mdi-calendar-range font-13"></i></span>
                         </div>
+                            <a href="${pageContext.request.contextPath}/manage/order-out/list" class="btn btn-primary ms-2"><i class="mdi mdi-arrow-left"></i>
+                            </a>
                     </form>
                 </div>
 
             </div>
         </div>
+
     </div>
 
     <div class="row  pt-1 ">
         <div class="col-sm-7" >
             <div class="card">
                 <div class="card-body">
-
-                        <div class="productList" id="productList">
-                            <div class="row ">
-                                <%--                Hiển thị danh sach loại sản phẩm--%>
-                                <div class="container pt-1" id="categoryList">
-                                    <div class="btn-group btn-group-sm mb-1" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="btnradio" id="category-all" value="all" checked>
-                                        <label class="btn btn-outline-secondary" for="category-all">Tất cả sản phẩm</label>
-                                    </div>
-                                    <c:forEach items="${category}" var="categorys">
-                                        <div class="btn-group btn-group-sm mb-1" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="btnradio" id="category-${categorys.categoryId}" value="${categorys.categoryId}">
-                                            <label class="btn btn-outline-secondary" for="category-${categorys.categoryId}">${categorys.categoryName}</label>
-                                        </div>
-                                    </c:forEach>
+                    <div class="productList" id="productList">
+                        <div class="row ">
+                            <div class="container pt-1" id="categoryList">
+                                <div class="btn-group btn-group-sm mb-1" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="category-all" value="all" checked>
+                                    <label class="btn btn-outline-secondary" for="category-all">Tất cả sản phẩm</label>
                                 </div>
-                                    <hr style="height: 2px">
-
-                                <c:forEach items="${products}" var="product">
-                                    <div class="col-2 g-2 product-card" data-category-id="${product.category.categoryId}">
-                                        <div class="card shadow-sm img-thumbnail card-product" style="width: 100%; height: 80%;" onclick="showProductDetails('${product.productId}','${product.productName}','${product.price}','${product.image}', 1)">
-                                            <% String urlImage = StringConstrant.URL_IMAGE_PRODUCT;
-                                                pageContext.setAttribute("urlImage", urlImage);
-                                            %>
-                                            <td><img src="<c:url value="${urlImage}${product.image}"/>"
-                                                     class="card-img-top"
-                                                     alt="..."
-                                                     style="object-fit: cover; height: 90px;">
-                                                <div class="card-body text-center">
-                                                    <p class="card-title text-truncate">${product.productName}</p>
-                                                    <p class="card-text fw-bold">${product.price}</p>
-                                                </div>
-                                        </div>
+                                <c:forEach items="${category}" var="categorys">
+                                    <div class="btn-group btn-group-sm mb-1" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check" name="btnradio" id="category-${categorys.categoryId}" value="${categorys.categoryId}">
+                                        <label class="btn btn-outline-secondary" for="category-${categorys.categoryId}">${categorys.categoryName}</label>
                                     </div>
                                 </c:forEach>
                             </div>
+                            <hr style="height: 2px">
+                            <c:forEach items="${products}" var="product">
+                                <div class="col-2 g-2 product-card" data-category-id="${product.category.categoryId}">
+                                    <div class="card shadow-sm img-thumbnail card-product" style="width: 100%; height: 80%;" onclick="showProductDetails('${product.productId}','${product.productName}','${product.price}','${product.image}', 1)">
+                                        <% String urlImage = StringConstrant.URL_IMAGE_PRODUCT;
+                                            pageContext.setAttribute("urlImage", urlImage);
+                                        %>
+                                        <td><img src="<c:url value="${urlImage}${product.image}"/>"
+                                                 class="card-img-top"
+                                                 alt="..."
+                                                 style="object-fit: cover; height: 90px;">
+                                            <div class="card-body text-center">
+                                                <p class="card-title text-truncate">${product.productName}</p>
+                                                <p class="card-text fw-bold">${product.price}</p>
+                                            </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Ghi chú</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-
-
+                    </div>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="exampleFormControlTextarea1" class="form-label">Ghi chú</label>--%>
+<%--                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>--%>
+<%--                    </div>--%>
                 </div>
-
             </div>
         </div>
         <div class="col-sm-5">
             <div class="card">
                 <div class="card-body">
                     <div class="row" >
-                        <%--                    <div class="col-sm-12 col-md-8 ">--%>
                         <div class="col ">
                             <form id="order-form" action="${pageContext.request.contextPath}/manage/order-out/save-order" method="POST">
                                 <table class="table table-hover">
@@ -165,31 +161,16 @@
                                         <div class="mb-3 pt-3">
                                             <label for="customerSelect" class="form-label">Khách hàng</label>
                                             <select id="customerSelect" class="select2 form-control select2-multiple" data-toggle="select2"  data-placeholder="Khách hàng ..." name="customerId">
-
+                                                <option value="0"></option>
                                                 <c:forEach items="${customers}" var="customer" >
                                                     <option value="${customer.customerId}">${customer.phoneCustomer}-${customer.nameCustomer}</option>
                                                 </c:forEach>
-
                                             </select>
                                         </div>
                                         <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                             <option selected disabled>Chọn mã giảm giá</option>
-                                            <%--                                        <c:forEach var="voucher" items="${vouchers}">--%>
-                                            <%--                                            <option value="${voucher.voucherId}" data-discount="${voucher.discount}">--%>
-                                            <%--                                                    ${voucher.code} - ${voucher.discount}%--%>
-                                            <%--                                            </option>--%>
-                                            <%--                                        </c:forEach>--%>
                                         </select>
                                     </div>
-
-
-
-
-
-
-
-
-
                                     <div class="row pt-3">
                                         <div class="border p-3 mt-4 mt-lg-0 rounded">
                                             <h4 class="header-title mb-3">Order Summary</h4>
@@ -201,13 +182,11 @@
                                                         <td>Tổng số lượng :</td>
                                                         <td><a id="totalQuantity" name="totalQuantity"></a></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Tổng tiền : </td>
-                                                        <td><a id="orderTotal" name="orderTotal"> </a> </td>
-                                                    </tr>
+                                                        <td>Tổng giá :</td>
+                                                        <td><a id="total" ></a></td>
                                                     <tr>
                                                         <c:if test="${not empty orderEdits.orderTotal}">
-                                                            <td>Giá ban đầu:</td>
+                                                            <td>Giá trước khi sửa:</td>
                                                             <td><a><b style="color: #0c6af3">${orderEdits.orderTotal}</b></a></td>
                                                         </c:if>
                                                     </tr>
@@ -215,40 +194,21 @@
                                                         <th>Giảm giá</th>
                                                         <th><a id="discountCalculation" style="color: green;"></a></th>
                                                     </tr>
-
+                                                    <tr>
+                                                        <td>Tổng tiền : </td>
+                                                        <td><a id="orderTotal" name="orderTotal"> </a> </td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <!-- end table-responsive -->
                                         </div>
 
-
-<%--                                        <div class="col-6">--%>
-<%--                                            <a>Tổng số lượng: </a> <br>--%>
-<%--                                            <a>Tổng tiền: <a id="orderTotal" name="orderTotal"> </a> <br> </a>--%>
-<%--                                            <c:if test="${not empty orderEdits.orderTotal}">--%>
-<%--                                                <a>Giá ban đầu: <b style="color: #0c6af3">${orderEdits.orderTotal}</b></a>--%>
-<%--                                            </c:if>--%>
-
-<%--                                        </div>--%>
-
-                                        <div class="col-6">
-                                            <%--                                        <select id="voucherSelect" class="form-select" aria-label="Default select example">--%>
-                                            <%--                                            <option selected disabled>Chọn mã giảm giá</option>--%>
-                                            <%--                                            <c:forEach var="voucher" items="${vouchers}">--%>
-                                            <%--                                                <option value="${voucher.voucherId}" data-discount="${voucher.discount}">--%>
-                                            <%--                                                        ${voucher.code} - ${voucher.discount}%--%>
-                                            <%--                                                </option>--%>
-                                            <%--                                            </c:forEach>--%>
-                                            <%--                                        </select>--%>
-
-                                        </div>
-
                                     </div>
                                     <div class="pt-3">
-                                        <button type="submit" id="save-order" class="btn btn-success" style="display: none;">
+                                        <butotn type="submit" id="save-order" class="btn btn-success" style="display: none;">
                                             Thanh Toán <i class="bi bi-play-fill"></i>
-                                        </button>
+                                        </butotn>
                                     </div>
 
                                 </div>
@@ -263,30 +223,6 @@
     </div>
 </div>
 <script>
-    document.getElementById('voucherSelect').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var discount = selectedOption.getAttribute('data-discount');
-
-        var initialTotalElement = document.getElementById('orderTotal');
-        var discountCalculationElement = document.getElementById('discountCalculation');
-
-        console.log("Selected Discount: " + discount); // Log the discount value to confirm the selection
-
-
-             if (initialTotalElement && discount) {
-                 var initialTotal = parseFloat(initialTotalElement.textContent);
-                 var discountAmount = initialTotal * (discount / 100);
-                 var newTotal = initialTotal - discountAmount;
-                 if(!isNaN(discountAmount.toFixed(2)) && discount > 0){
-                 // Display the percentage calculation
-                 discountCalculationElement.innerHTML = "Giảm: " + discount + "% = -" + discountAmount.toFixed(2) + "<br>" + "Tổng sau giảm: " + newTotal.toFixed(2);
-                 }
-             } else {
-                 discountCalculationElement.textContent = ""; // Clear the calculation if no voucher is selected
-             }
-
-    });
-
     function showProductDetails(id, name, price, image, quantity) {
         // Tạo dòng <tr> mới
         var tr = document.createElement('tr');
@@ -376,7 +312,6 @@
 
         removeTd.appendChild(removeBtn);
         tr.appendChild(removeTd);
-
         // Thêm dòng <tr> mới vào bảng
         var tbody = document.getElementById('product-list');
         tbody.appendChild(tr);
@@ -394,28 +329,6 @@
         } else {
             saveOrderButton.style.display = "none";
         }
-    }
-    // Hàm tính tổng giá của tất cả sản phẩm
-    function calculateGrandTotal() {
-        var allRows = document.querySelectorAll('#product-list tr');
-        var grandTotal = 0;
-        var totalQuantity = 0; // Khởi tạo biến để tính tổng số lượng
-
-        //Tính toán
-        allRows.forEach(function(row) {
-            var priceElement = row.querySelector('td:nth-child(4) strong');
-            var rowTotal = parseFloat(priceElement.innerText);
-            grandTotal += rowTotal;
-
-            var quantityElement = row.querySelector('td:nth-child(2) input');
-            var quantity = parseInt(quantityElement.value);
-            totalQuantity += quantity; // Cộng dồn số lượng của từng sản phẩm
-        });
-
-        grandTotal = Math.round(grandTotal * 100) / 100;
-        document.getElementById('orderTotal').innerHTML = '<strong>' + grandTotal.toFixed(2) + '</strong>';
-        updateSaveButtonVisibility();
-        document.getElementById('totalQuantity').innerHTML =  '<strong>' + totalQuantity + '</strong>';
     }
     document.getElementById('save-order').addEventListener('click', function() {
         var allRows = document.querySelectorAll('#product-list tr');
@@ -467,8 +380,7 @@
     // Gọi hàm showProductDetails để hiển thị thông tin sản phẩm
     showProductDetails(productId, productName, productPrice, productImage, quantity);
     </c:forEach>
-
-// Hiển thị sản phẩm theo loại
+    // Hiển thị sản phẩm theo loại
     document.querySelectorAll('.btn-check').forEach(button => {
         button.addEventListener('change', function() {
             const selectedCategoryId = this.value;
@@ -485,37 +397,42 @@
             });
         });
     });
+
     // Hiển thị tất cả sản phẩm khi trang được load
     document.getElementById('category-all').dispatchEvent(new Event('change'));
 
-//
 
 
     $(document).ready(function() {
         $('#customerSelect').select2();
 
         $('#customerSelect').on('change', function() {
-            var customerId = $(this).val();
+            var customerId = $(this).val() || null; // Nếu không chọn thì gán giá trị là null
             console.log(customerId);  // Kiểm tra giá trị customerId
 
             var voucherSelect = document.getElementById('voucherSelect');
             voucherSelect.innerHTML = '<option selected disabled>Chọn mã giảm giá</option>';
 
-            // Lấy dữ liệu mã giảm giá tương ứng với khách hàng đã chọn
-            fetch('/Mock-Project/manage/voucher/api/list/' + customerId)
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(voucher => {
-                        var option = document.createElement('option');
-                        option.value = voucher.voucher.voucherId;
-                        option.text = voucher.voucher.code + ` - ` + voucher.voucher.discount+`%`;
+            if (customerId) {
+                // Lấy dữ liệu mã giảm giá tương ứng với khách hàng đã chọn
+                fetch('/Mock-Project/manage/voucher/api/list/' + customerId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(voucher => {
+                            var option = document.createElement('option');
+                            option.value = voucher.voucher.voucherId;
+                            option.text = voucher.voucher.code + ` - ` + voucher.voucher.discount + `%`;
 
-                        // Thêm thuộc tính data-discount
-                        option.dataset.discount = voucher.voucher.discount;
-                        voucherSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
+                            // Thêm thuộc tính data-discount
+                            option.dataset.discount = voucher.voucher.discount;
+                            voucherSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+        $('#voucherSelect').on('change', function() {
+            calculateGrandTotal(); // Cập nhật tổng giá sau khi chọn mã giảm giá
         });
 
         $('#customerCheck').on('change', function() {
@@ -527,6 +444,39 @@
             }
         });
     });
+    function calculateGrandTotal() {
+        var allRows = document.querySelectorAll('#product-list tr');
+        var grandTotal = 0;
+        var totalQuantity = 0; // Khởi tạo biến để tính tổng số lượng
 
+        // Tính toán tổng tiền trước khi giảm giá
+        allRows.forEach(function(row) {
+            var priceElement = row.querySelector('td:nth-child(4) strong');
+            var rowTotal = parseFloat(priceElement.innerText);
+            grandTotal += rowTotal;
 
+            var quantityElement = row.querySelector('td:nth-child(2) input');
+            var quantity = parseInt(quantityElement.value);
+            totalQuantity += quantity; // Cộng dồn số lượng của từng sản phẩm
+        });
+        var total = Math.round(grandTotal * 100) / 100; // Tính toán giá trị tổng ban đầu
+        document.getElementById('total').innerHTML = '<strong>' + total.toFixed(2) + '</strong>';
+        // Áp dụng giảm giá
+        var voucherSelect = document.getElementById('voucherSelect');
+        var selectedOption = voucherSelect.options[voucherSelect.selectedIndex];
+        var discount = selectedOption ? parseFloat(selectedOption.dataset.discount) : 0;
+        var discountAmount = (grandTotal * discount) / 100;
+        grandTotal = Math.round((grandTotal - discountAmount) * 100) / 100;
+        console.log('grandTotal:', grandTotal);
+        console.log('total:', total);
+        if (isNaN(grandTotal)) {
+            grandTotal = total;
+        }
+        console.log(grandTotal, total); // Kiểm tra giá trị của grandTotal và total
+        document.getElementById('discountCalculation').innerText = '-' + discountAmount.toFixed(2) + ' VND';
+        document.getElementById('orderTotal').innerHTML = '<strong>' + grandTotal.toFixed(2) + '</strong>';
+        console.log('grandTotal.toFixed(2):', grandTotal.toFixed(2));
+        document.getElementById('totalQuantity').innerHTML =  '<strong>' + totalQuantity + '</strong>';
+        updateSaveButtonVisibility();
+    }
 </script>

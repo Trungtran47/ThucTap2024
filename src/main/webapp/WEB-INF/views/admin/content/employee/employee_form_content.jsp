@@ -78,7 +78,7 @@
                     <div class="mb-3 position-relative" id="managerOptionDiv" style="display: none;">
                         <label for="ManagerId" class="form-label">Quản lý</label>
                         <select class="form-select" id="ManagerId"
-                                name="IDManager" required>
+                                name="IDManager">
                             <option value="">Quản lý</option>
                             <c:forEach var="manager" items="${managers}">
                                 <option value="${manager.userId}">
@@ -114,7 +114,7 @@
             }
             if (selectedRole != "2") { // Nếu chọn Nhân Viên
                 $('#managerOptionDiv').hide(); // Hiển thị dropdown Quản lý
-                $('#ManagerId').prop('required', true); // Đặt thuộc tính required cho Quản lý
+                $('#ManagerId').prop('required', false); // Đặt thuộc tính required cho Quản lý
             }
         });
     });

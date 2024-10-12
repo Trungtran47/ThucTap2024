@@ -11,13 +11,13 @@ public class ProductEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long productId;
-    @Column(name = "product_name",length = 255, nullable = false)
+    @Column(name = "product_name",columnDefinition = "NVARCHAR(255)", nullable = false)
     private String productName;
     @Column(name = "price")
     private double price;
-    @Column(name = "description",length = 255 )
+    @Column(name = "description",columnDefinition = "NVARCHAR(255)" )
     private String description;
-    @Column(name = "total_quality",length = 255 )
+    @Column(name = "total_quality")
     private int totalQuality = 0;
     @Column(name = "image")
     private String image;

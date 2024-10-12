@@ -8,9 +8,9 @@ public class OrderInDetailEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private OrderEntity orderIn;
 
@@ -19,15 +19,14 @@ public class OrderInDetailEntity extends BaseEntity{
     private MaterialEntity material;
     @Column(name = "quantity")
     private int quantity;
+    @Column(name = "price")
+    private float price;
 
-    @Column(name = "total_invoice")
-    private float totalInvoice;
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,11 +54,22 @@ public class OrderInDetailEntity extends BaseEntity{
         this.quantity = quantity;
     }
 
-    public float getTotalInvoice() {
-        return totalInvoice;
+    public float getPrice() {
+        return price;
     }
 
-    public void setTotalInvoice(float totalInvoice) {
-        this.totalInvoice = totalInvoice;
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderInDetailEntity{" +
+                "id=" + id +
+                ", orderIn=" + orderIn +
+                ", material=" + material +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }

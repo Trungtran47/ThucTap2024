@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -24,6 +25,11 @@ public interface IShiftService {
     List<ShiftDetailEntity> listShiftToDay(LocalDate localDate);
 
     List<ShiftDetailEntity> listShiftOfEmployee(String employeeUsername);
+
+    ShiftDetailEntity findShiftDetailByIDCurrentTime(String username, LocalDate date, LocalTime currentTime);
+
+    Boolean RollAttendance(Long shiftDetailID);
+
 
 
 

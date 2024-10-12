@@ -4,6 +4,7 @@ import com.example.entity.ShiftDetailEntity;
 import com.example.entity.ShiftEntity;
 import com.example.service.IShiftService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,35 +50,44 @@ public class ShiftController {
         return "admin/shift_form";
     }
     @GetMapping("/calendar")
-    public String listCalendar(Model model) {
+    public String listCalendar(@RequestParam(defaultValue = "0") int weekOffset,
+                               @RequestParam(required = false) String currentWeekStart,
+                               Model model) {
         LocalDate today = LocalDate.now();
-        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        LocalDate startOfWeek;
 
-        // Tính ngày đầu tuần và ngày cuối tuần
-        LocalDate startOfWeek = today.with(weekFields.dayOfWeek(), 1);
-        LocalDate endOfWeek = today.with(weekFields.dayOfWeek(), 7);
+        if (currentWeekStart != null) {
+            startOfWeek = LocalDate.parse(currentWeekStart).plusWeeks(weekOffset);
+        } else {
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            startOfWeek = today.with(weekFields.dayOfWeek(), 1).plusWeeks(weekOffset);
+        }
 
-        // Lưu ngày trong tuần vào danh sách
+        LocalDate endOfWeek = startOfWeek.plusDays(6);
+
         List<LocalDate> daysOfWeek = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             daysOfWeek.add(startOfWeek.plusDays(i));
         }
+
         List<ShiftDetailEntity> listShiftToDay = shiftService.listShiftToDay(today);
-        // Thêm ngày vào mô hình
+
         model.addAttribute("daysOfWeek", daysOfWeek);
         model.addAttribute("startOfWeek", startOfWeek);
         model.addAttribute("endOfWeek", endOfWeek);
         model.addAttribute("today", today);
         model.addAttribute("listShiftToDay", listShiftToDay);
-
+        model.addAttribute("weekOffset", weekOffset);
+        model.addAttribute("currentWeekStart", startOfWeek);
 
         List<ShiftEntity> shifts = shiftService.getShifts();
-        if(!shifts.isEmpty()) {
+        if (!shifts.isEmpty()) {
             model.addAttribute("shifts", shifts);
         }
 
         return "admin/shift_calendar";
     }
+
     @PostMapping("/new")
     public String addShift(@ModelAttribute ShiftEntity shift) {
         shiftService.addShift(shift);
@@ -90,5 +100,15 @@ public class ShiftController {
 
         return "redirect:/manage/manager/shift/list";
     }
-
+    @PostMapping(value = "/roll-attendance/{shiftDetailID}")
+    public String RollAttendance(@PathVariable Long shiftDetailID){
+        boolean check = shiftService.RollAttendance(shiftDetailID);
+        if(check){
+            System.out.println("Đã điểm danh");
+            return "redirect:/manage/home";
+        }else {
+            System.out.println("Chưa được điểm danh");
+            return "redirect:/manage/home";
+        }
+    }
 }

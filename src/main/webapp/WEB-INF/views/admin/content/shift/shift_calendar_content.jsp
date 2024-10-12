@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="btn-group" role="group" aria-label="View Switcher">
-                                        <button type="button" class="btn btn-primary" >Tuần trước</button>
+                                        <button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/manage/manager/shift/calendar?weekOffset=${weekOffset - 1}&currentWeekStart=${currentWeekStart}'">Tuần trước</button>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -86,7 +86,7 @@
 <%--                                        <button type="button" class="btn btn-primary" id="btn-daily-view">Ngày</button>--%>
 <%--                                        <button type="button" class="btn btn-primary" id="btn-weekly-view">Tuần</button>--%>
 <%--                                        <button type="button" class="btn btn-primary" id="btn-today-employees">Ca</button>--%>
-                                            <button type="button" class="btn btn-primary" >Tuần Sau</button>
+                                            <button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/manage/manager/shift/calendar?weekOffset=${weekOffset + 1}&currentWeekStart=${currentWeekStart}'">Tuần Sau</button>
                                     </div>
                                 </div>
                             </div>
@@ -217,15 +217,18 @@
                                     </table>
                                 </div>
 
+
                                 <!-- Thêm nhân viên mới vào ca -->
 
-                                <div class="mb-3">
-                                    <label for="newEmployee" class="form-label">Thêm nhân viên:</label>
+                                    <div class="mb-3" id="addemployeeForm" style="display: none;">
+                                        <label for="newEmployee" class="form-label">Thêm nhân viên:</label>
 
-                                    <select class="form-select" aria-label="Default select example" id="newEmployee">
+                                        <select class="form-select" aria-label="Default select example" id="newEmployee">
 
-                                    </select>
-                                </div>
+                                        </select>
+                                    </div>
+
+
 
                                 <input type="hidden" id="shiftId" name="shiftId" value="${shiftId}">
                                 <input type="hidden" id="shiftDate" name="shiftId" value="${shiftDate}">
@@ -293,6 +296,15 @@
             var button = $(event.relatedTarget);
             var shiftId = button.data('shift-id'); // Lấy shiftId từ thuộc tính data của nút
             var shiftDate = button.data('shift-date');
+            var today = new Date().toISOString().split('T')[0];
+            console.log(today)
+            console.log(shiftDate)
+            // So sánh shiftDate với ngày hiện tại
+            if (shiftDate >= today) {
+                $('#addemployeeForm').show();
+            } else {
+                $('#addemployeeForm').hide();
+            }
             console.log(shiftId)
             // Gọi API để lấy danh sách nhân viên trong ca
             fetch(`/Mock-Project/manage/manager/shift/api/detail/`+ shiftId + "/" + shiftDate)

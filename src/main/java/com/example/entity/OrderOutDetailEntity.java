@@ -19,8 +19,7 @@ public class OrderOutDetailEntity extends BaseEntity{
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "total_invoice")
-    private float totalInvoice;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
@@ -65,11 +64,4 @@ public class OrderOutDetailEntity extends BaseEntity{
         this.customer = customer;
     }
 
-    public float getTotalInvoice() {
-        return totalInvoice;
-    }
-
-    public void setTotalInvoice(float totalInvoice) {
-        this.totalInvoice = totalInvoice;
-    }
 }

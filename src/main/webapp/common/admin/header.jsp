@@ -13,43 +13,43 @@
             </div>
         </li>
 
-        <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-bell noti-icon"></i>
-                <span class="noti-icon-badge"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
+<%--        <li class="dropdown notification-list">--%>
+<%--            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">--%>
+<%--                <i class="dripicons-bell noti-icon"></i>--%>
+<%--                <span class="noti-icon-badge"></span>--%>
+<%--            </a>--%>
+<%--            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">--%>
 
-                <!-- item-->
-                <div class="dropdown-item noti-title">
-                    <h5 class="m-0">
-                                            <span class="float-end">
-                                                <a href="javascript: void(0);" class="text-dark">
-                                                    <small>Clear All</small>
-                                                </a>
-                                            </span>Notification
-                    </h5>
-                </div>
+<%--                <!-- item-->--%>
+<%--                <div class="dropdown-item noti-title">--%>
+<%--                    <h5 class="m-0">--%>
+<%--                                            <span class="float-end">--%>
+<%--                                                <a href="javascript: void(0);" class="text-dark">--%>
+<%--                                                    <small>Clear All</small>--%>
+<%--                                                </a>--%>
+<%--                                            </span>Notification--%>
+<%--                    </h5>--%>
+<%--                </div>--%>
 
-                <div style="max-height: 230px;" data-simplebar="">
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">1 min ago</small>
-                        </p>
-                    </a>
-                </div>
+<%--                <div style="max-height: 230px;" data-simplebar="">--%>
+<%--                    <!-- item-->--%>
+<%--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--%>
+<%--                        <div class="notify-icon bg-primary">--%>
+<%--                            <i class="mdi mdi-comment-account-outline"></i>--%>
+<%--                        </div>--%>
+<%--                        <p class="notify-details">Caleb Flakelar commented on Admin--%>
+<%--                            <small class="text-muted">1 min ago</small>--%>
+<%--                        </p>--%>
+<%--                    </a>--%>
+<%--                </div>--%>
 
-                <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                    Xem thêm
-                </a>
+<%--                <!-- All-->--%>
+<%--                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">--%>
+<%--                    Xem thêm--%>
+<%--                </a>--%>
 
-            </div>
-        </li>
+<%--            </div>--%>
+<%--        </li>--%>
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -86,31 +86,31 @@
     <button class="button-menu-mobile open-left">
         <i class="mdi mdi-menu"></i>
     </button>
-    <div class="app-search dropdown d-none d-lg-block">
-        <form>
-            <div class="input-group">
-                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-                <span class="mdi mdi-magnify search-icon"></span>
-                <button class="input-group-text btn-primary" type="submit">Tìm kiếm</button>
-            </div>
-        </form>
+<%--    <div class="app-search dropdown d-none d-lg-block">--%>
+<%--        <form>--%>
+<%--            <div class="input-group">--%>
+<%--                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">--%>
+<%--                <span class="mdi mdi-magnify search-icon"></span>--%>
+<%--                <button class="input-group-text btn-primary" type="submit">Tìm kiếm</button>--%>
+<%--            </div>--%>
+<%--        </form>--%>
 
-        <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-            <!-- item-->
-            <div class="dropdown-header noti-title">
-                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
-            </div>
+<%--        <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">--%>
+<%--            <!-- item-->--%>
+<%--            <div class="dropdown-header noti-title">--%>
+<%--                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>--%>
+<%--            </div>--%>
 
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                <i class="uil-notes font-16 me-1"></i>
-                <span>Analytics Report</span>
-            </a>
+<%--            <!-- item-->--%>
+<%--            <a href="javascript:void(0);" class="dropdown-item notify-item">--%>
+<%--                <i class="uil-notes font-16 me-1"></i>--%>
+<%--                <span>Analytics Report</span>--%>
+<%--            </a>--%>
 
 
 
-        </div>
-    </div>
+<%--        </div>--%>
+<%--    </div>--%>
 </div>
 <script>
     // Thêm sự kiện click vào phần tử có id là "logout-btn"

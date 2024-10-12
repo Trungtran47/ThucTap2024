@@ -12,12 +12,14 @@ public class MaterialEntity extends BaseEntity{
     @Column(name = "material_id")
     private Long materialId;
 
-    @Column(name = "material_name")
+    @Column(name = "material_name",columnDefinition = "NVARCHAR(255)")
     private String materialName;
     @Column(name = "Units_of_measurement")
-    private int unitsOfMeasurement;
+    private String unitsOfMeasurement;
+    @Column(name = "quantity")
+    private int quantity;
 
-//    trường liên kết với bảng order_in_details
+    //    trường liên kết với bảng order_in_details
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderInDetailEntity> orderInDetails;
     //    trường liên kết với bảng product_material
@@ -40,12 +42,20 @@ public class MaterialEntity extends BaseEntity{
         this.materialName = materialName;
     }
 
-    public int getUnitsOfMeasurement() {
+    public String getUnitsOfMeasurement() {
         return unitsOfMeasurement;
     }
 
-    public void setUnitsOfMeasurement(int unitsOfMeasurement) {
+    public void setUnitsOfMeasurement(String unitsOfMeasurement) {
         this.unitsOfMeasurement = unitsOfMeasurement;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Set<OrderInDetailEntity> getOrderInDetails() {
@@ -62,5 +72,15 @@ public class MaterialEntity extends BaseEntity{
 
     public void setProducts(Set<ProductMaterialEntity> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "MaterialEntity{" +
+                "materialId=" + materialId +
+                ", materialName='" + materialName + '\'' +
+                ", unitsOfMeasurement=" + unitsOfMeasurement +
+                ", quantity=" + quantity +
+                '}';
     }
 }
